@@ -21,6 +21,13 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [3.10.0] - 2026-02-06 (The Churn Crisis)
+### Added
+- **Campaign:** Implemented Level 2 Narrative Arc ("The Leaky Bucket").
+- **Content:** Added 3 major retention-focused scenarios (Outage, Support Crisis, Feature Freeze).
+- **Physics:** Integrated "Band-aid" vs "Root Cause" decision branching to the Churn engine.
+- **Backend:** Expanded `phase_1.json` with technical debt and stability actions.
+
 ## [3.9.2] - 2026-02-06 (Retention Engine)
 ### Added
 - **Physics:** Implemented dynamic User Churn logic based on Trust and Health (SYS-11).

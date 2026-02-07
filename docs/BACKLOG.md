@@ -2,7 +2,7 @@
 
 | ID | Task | Status | Spec Link |
 |:---|:---|:---|:---|
-| DATA-11 | Level 2 Content Expansion (12-Turn Arc) | PENDING | docs/specs/DATA-11.md |
+| DATA-11 | Level 2 Content Expansion (12-Turn Arc) | COMPLETED | docs/specs/DATA-11.md |
 | SYS-11 | Retention & Churn Engine Logic | COMPLETED | docs/specs/SYS-11.md |
 | WEB-24 | Prediction Loop Modal (Hypothesis Lock) | PENDING | docs/specs/WEB-24.md |
 | WEB-25 | Wiki Knowledge Link Integration | PENDING | docs/specs/WEB-25.md |

@@ -3,80 +3,35 @@
     "id": "q2_kickoff",
     "type": "system",
     "sender": "CEO",
-    "subject": "Q2 Kickoff: The Next Chapter",
-    "body": "We've aligned on our strategy. Now it's time to execute. Quarter 2 will test our ability to stay focused while the market shifts.",
+    "subject": "Q2 Kickoff: The Leaky Bucket",
+    "body": "Welcome to Quarter 2. Our acquisition numbers in Q1 were legendary, but the data shows a worrying trend: users are leaving. This quarter, our North Star is Retention. If we don't fix the churn, the growth is meaningless.",
     "options": [
-      { "label": "Start Quarter", "action_id": "status_quo", "impact_hint": "LGO" }
+      { "label": "Understood", "action_id": "status_quo", "impact_hint": "Focus: Retention" }
     ],
     "trigger": { "min_turn": 0, "max_turn": 0 }
   },
   {
-    "id": "q2_blitz_viral",
-    "type": "growth",
-    "sender": "Growth Lead",
-    "subject": "VIRAL SPIKE: We're trending on TechCrunch!",
-    "body": "The blitzscaling is working! We're seeing massive traffic, but the servers are starting to smoke. Do we capitalize on the surge or cap the traffic?",
-    "options": [
-      { "label": "Ride the Wave", "action_id": "scale_up", "impact_hint": "++Traffic, --Health" },
-      { "label": "Cap Traffic", "action_id": "throttle_traffic", "impact_hint": "-Traffic, +Stability" }
-    ],
-    "trigger": { "min_turn": 1, "required_focus": "blitzscale" }
-  },
-  {
-    "id": "q2_blitz_bill",
+    "id": "q2_outage",
     "type": "crisis",
-    "sender": "Finance",
-    "subject": "URGENT: Infrastructure Bill",
-    "body": "Our AWS bill just tripled. If we don't optimize our instance usage, we'll run out of runway by next month.",
+    "sender": "CTO",
+    "subject": "URGENT: Database Latency Spike",
+    "body": "The checkout service is crawling. We're seeing 500 errors for 10% of users. We can patch it now with a 'Band-aid' which will restore service but might cause a crash later, or we can take the site down for 2 hours for a 'Root Cause' fix.",
     "options": [
-      { "label": "Pay & Scale", "action_id": "status_quo", "impact_hint": "---Revenue, +Stability" }
+      { "label": "Apply Band-aid", "action_id": "band_aid_fix", "impact_hint": "--Trust, Quick Recovery" },
+      { "label": "Full RCA", "action_id": "root_cause_analysis", "impact_hint": "+++Trust, Slow Recovery" }
     ],
-    "trigger": { "min_turn": 3, "required_focus": "blitzscale" }
+    "trigger": { "min_turn": 2, "max_turn": 3 }
   },
   {
-    "id": "q2_fortify_refactor",
-    "type": "tech_debt",
-    "sender": "Lead Dev",
-    "subject": "Refactor Request: Core API",
-    "body": "Now that we're focusing on fortification, I want to take 2 weeks to refactor the core API. It'll slow down features but make the system bulletproof.",
-    "options": [
-      { "label": "Full Refactor", "action_id": "refactor_yes", "impact_hint": "--Score, ++Stability" },
-      { "label": "Patch Only", "action_id": "refactor_no", "impact_hint": "+Score, --Stability" }
-    ],
-    "trigger": { "min_turn": 1, "required_focus": "fortify" }
-  },
-  {
-    "id": "q2_fortify_crash",
+    "id": "q2_support_crisis",
     "type": "crisis",
-    "sender": "Ops",
-    "subject": "CRISIS: Legacy System Crash",
-    "body": "The legacy checkout system just died. Thankfully our fortification work saved the user data, but we need to decide how to recover.",
+    "sender": "Head of Support",
+    "subject": "The Support Inbox is Exploding",
+    "body": "Tickets are up 400%. The team is burning out and users are threatening to cancel their subscriptions en masse. We need to do something radical to signal we care about stability.",
     "options": [
-      { "label": "Emergency Restore", "action_id": "status_quo", "impact_hint": "Resumes Service" }
+      { "label": "Declare Feature Freeze", "action_id": "freeze_everything", "impact_hint": "---Revenue, +++Trust" },
+      { "label": "Hire more Support", "action_id": "outsource_yes", "impact_hint": "-Revenue, +Morale" }
     ],
-    "trigger": { "min_turn": 3, "required_focus": "fortify" }
-  },
-  {
-    "id": "q2_monetize_pricing",
-    "type": "politics",
-    "sender": "Sales VP",
-    "subject": "Pricing Update: Higher Tiers?",
-    "body": "To hit our monetization goals, we should introduce a 'Platinum' tier for enterprise clients. It boosts AOV but might alienate our mid-market base.",
-    "options": [
-      { "label": "Introduce Platinum", "action_id": "bundle_yes", "impact_hint": "++AOV, -Trust" },
-      { "label": "Standard Pricing", "action_id": "bundle_no", "impact_hint": "+Trust, --AOV" }
-    ],
-    "trigger": { "min_turn": 1, "required_focus": "monetize" }
-  },
-  {
-    "id": "q2_monetize_enterprise",
-    "type": "growth",
-    "sender": "Key Accounts",
-    "subject": "Enterprise Deal: Global Logistics Corp",
-    "body": "A huge deal is on the table. They want a massive discount but guaranteed 100% uptime. This could double our revenue instantly.",
-    "options": [
-      { "label": "Sign Deal", "action_id": "intl_launch", "impact_hint": "+++Revenue, --Stability" }
-    ],
-    "trigger": { "min_turn": 3, "required_focus": "monetize" }
+    "trigger": { "min_turn": 5, "max_turn": 6 }
   }
 ]

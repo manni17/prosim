@@ -26,6 +26,9 @@
     { "id": "outsource_no", "label": "Outsource No", "cost": { "revenue": [5000, 10000] }, "reward": { "morale": [0.2, 0.2] }, "description": "" },
     { "id": "ai_yes", "label": "AI Yes", "cost": { "trust": [0.15, 0.2], "revenue": [2000, 2000] }, "reward": { "cart_rate": [0.05, 0.1], "checkout_rate": [0.05, 0.1] }, "description": "" },
     { "id": "ai_no", "label": "AI No", "cost": { "cart_rate": [0.05, 0.05] }, "reward": { "trust": [0.1, 0.1] }, "description": "" },
+    { "id": "band_aid_fix", "label": "Band-aid Fix", "cost": { "trust": [0.1, 0.15], "morale": [0.05, 0.05] }, "reward": { "revenue": [5000, 5000] }, "description": "Quick fix, but hurts trust." },
+    { "id": "root_cause_analysis", "label": "Root Cause", "cost": { "health": [0.1, 0.1] }, "reward": { "trust": [0.2, 0.3], "morale": [0.1, 0.1] }, "description": "Deep fix, builds trust." },
+    { "id": "freeze_everything", "label": "Freeze Features", "cost": { "revenue": [10000, 15000] }, "reward": { "trust": [0.3, 0.4], "health": [0.2, 0.2] }, "description": "Stops growth to fix stability." },
     { "id": "final_tally", "label": "Final Tally", "cost": {}, "reward": { "score": [1, 1] }, "description": "" }
   ]
 }

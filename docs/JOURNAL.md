@@ -3,6 +3,19 @@
 
 ---
 
+## Entry 45: The Unsexy Pivot
+**Date:** Feb 06, 2026
+**Phase:** Phase 8 (Level 2 Expansion) - **Content**
+
+### 1. Teaching Retention over Acquisition
+With `DATA-11`, we have officially shifted the proSIM curriculum from "Growth Hacking" to "Sustainable Management."
+* **The Cognitive Shift:** In Level 1, players learn to buy traffic. In Level 2, they learn that traffic is a vanity metric if the product is broken.
+* **The "Major Outage" Choice:** This is a classic PM dilemma. The "Band-aid" fix is tempting because it's fast, but it carries a silent penalty: a permanent increase in the churn floor.
+* **The Feature Freeze:** We've introduced the most difficult choice in software management—stopping the roadmap. By making the revenue cost massive but the trust reward even larger, we force the player to value "System Integrity" as a business asset.
+* **Technical Integration:** This task proved that our `SimulationController` is truly level-aware. The seamless transition to `emails_lvl2.json` allows us to scale the story indefinitely without touching the engine core.
+
+---
+
 ## Entry 44: The Leaky Bucket
 **Date:** Feb 06, 2026
 **Phase:** Phase 8 (Level 2 Expansion) - **Physics**
