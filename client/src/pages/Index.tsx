@@ -208,9 +208,9 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
           {currentApp.component}
         </Window>
 
-        {/* {showTutorial && (
+        {showTutorial && (
           <TutorialOverlay onComplete={handleTutorialComplete} />
-        )} */}
+        )}
 
         {gameStatus === "REVIEW" && gameState && (
           <QuarterlyReview currentLevel={gameState.current_level} onCommit={handleStrategyCommit} />

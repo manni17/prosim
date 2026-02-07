@@ -21,6 +21,10 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [3.9.1] - 2026-02-06 (Tutorial Restoration)
+### Fixed
+- **UI:** Uncommented `TutorialOverlay` in `Index.tsx` to restore the onboarding tour for new sessions.
+
 ## [3.9.0] - 2026-02-04 (Seamless Progress Logic)
 ### Added
 - **UX:** Implemented sequential chart animation. MaxPanel now "replays" missed turns one by one (5s per turn) instead of jumping to the latest state.

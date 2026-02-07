@@ -54,7 +54,7 @@
 | UX-02 | Turn Processing Delay | COMPLETED | docs/CHANGELOG.md |
 | UX-03 | Live Data Interpolation | COMPLETED | docs/specs/UX-03.md |
 | SYS-06 | Dynamic Funnel Physics | COMPLETED | docs/specs/SYS-06.md |
-| WEB-23 | Re-enable Tutorial Overlay | PENDING | docs/specs/WEB-23.md |
+| WEB-23 | Re-enable Tutorial Overlay | COMPLETED | docs/specs/WEB-23.md |
 | UX-05 | Seamless Progress Logic | COMPLETED | docs/specs/UX-05.md |
 
 # V1.0 Milestone Reached
