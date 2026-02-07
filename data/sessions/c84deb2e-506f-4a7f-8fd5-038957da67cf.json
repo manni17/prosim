@@ -106,7 +106,7 @@
   ],
   "history": [
     {
-      "timestamp": "2026-02-07T16:49:50.718567",
+      "timestamp": "2026-02-07T16:39:58.000748",
       "turn_index": 1,
       "phase": 1,
       "action_id": "guest_checkout",
@@ -125,7 +125,7 @@
       "seed": 42
     },
     {
-      "timestamp": "2026-02-07T16:50:00.961685",
+      "timestamp": "2026-02-07T16:40:23.406640",
       "turn_index": 2,
       "phase": 1,
       "action_id": "express_pay",
@@ -147,7 +147,7 @@
   "events": [
     {
       "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:49:50.718403",
+      "timestamp": "2026-02-07T16:39:58.000580",
       "properties": {
         "action_id": "guest_checkout",
         "turn_index": 1
@@ -155,7 +155,7 @@
     },
     {
       "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:50:00.961605",
+      "timestamp": "2026-02-07T16:40:23.406549",
       "properties": {
         "action_id": "express_pay",
         "turn_index": 2
@@ -166,6 +166,5 @@
   "active_risks": [
     "memory_leak"
   ],
-  "active_upgrades": [],
   "seed": 42
 }

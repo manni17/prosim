@@ -3,6 +3,23 @@
 
 ---
 
+## Entry 47: Snapshot Integrity
+**Date:** Feb 06, 2026
+**Phase:** Phase 8 (Level 2 Expansion) - **Bugfix**
+
+### 1. The Cost of Placeholders
+During the implementation of the Prediction Modal, a `replace` call with placeholders accidentally truncated the `GameState` class, leading to a Pydantic "Decorator missing field" crash. 
+* **The Fix:** Full schema restoration and verification via local import testing.
+* **The Lesson:** Always provide the full class definition in `replace` calls when modifying models with active decorators.
+
+### 2. Dashboard Data Binding
+We identified a desync between the `TelemetryLogger` and `MaxPanel`. 
+* **The Problem:** The frontend was looking for metrics in a nested `metrics` dictionary that was inconsistent.
+* **The Solution:** We promoted `traffic`, `active_users`, `conversion_rate`, and `aov` to top-level snapshots in the `LogEntry`. 
+* **The Result:** The dashboard now has a "Root of Truth" for every turn, allowing the `interpolatedPoint` logic to accurately calculate the slope between any two turns without guessing missing values.
+
+---
+
 ## Entry 46: Thinking Fast and Slow
 **Date:** Feb 06, 2026
 **Phase:** Phase 8 (Level 2 Expansion) - **Pedagogy**

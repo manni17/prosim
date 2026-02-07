@@ -1,16 +1,16 @@
 {
   "health": 1.0,
-  "morale": 0.7362485340815441,
-  "trust": 0.4180286600771058,
+  "morale": 0.7487494622388667,
+  "trust": 0.5,
   "traffic": 10000,
-  "conversion_rate": 0.1255694339892375,
+  "conversion_rate": 0.11010050459630674,
   "average_order_value": 50.0,
-  "revenue": 82984.71699461875,
-  "active_users": 2020,
-  "churn_rate": 0.13729570098843413,
+  "revenue": 74090.25229815337,
+  "active_users": 1904,
+  "churn_rate": 0.125,
   "cart_rate": 0.25,
-  "checkout_rate": 0.5512505377611334,
-  "payment_rate": 0.9111605369074411,
+  "checkout_rate": 0.4819713399228942,
+  "payment_rate": 0.913751465918456,
   "phase": 1,
   "current_level": 1,
   "player_name": "Candidate",
@@ -106,40 +106,40 @@
   ],
   "history": [
     {
-      "timestamp": "2026-02-07T16:49:50.718567",
+      "timestamp": "2026-02-07T16:41:57.623162",
       "turn_index": 1,
       "phase": 1,
-      "action_id": "guest_checkout",
+      "action_id": "forced_login",
       "metrics": {
         "health_delta": 0.0,
-        "revenue": 65755.05377611335
+        "revenue": 58947.133992289426
       },
       "health": 1.0,
       "morale": 0.8,
-      "trust": 0.4180286600771058,
-      "revenue": 65755.05377611335,
-      "active_users": 1063,
+      "trust": 0.5,
+      "revenue": 58947.133992289426,
+      "active_users": 1075,
       "traffic": 10000,
-      "conversion_rate": 0.1102501075522267,
+      "conversion_rate": 0.09639426798457884,
       "average_order_value": 50.0,
       "seed": 42
     },
     {
-      "timestamp": "2026-02-07T16:50:00.961685",
+      "timestamp": "2026-02-07T16:42:01.680195",
       "turn_index": 2,
       "phase": 1,
       "action_id": "express_pay",
       "metrics": {
         "health_delta": 0.0,
-        "revenue": 82984.71699461875
+        "revenue": 74090.25229815337
       },
       "health": 1.0,
-      "morale": 0.7362485340815441,
-      "trust": 0.4180286600771058,
-      "revenue": 82984.71699461875,
-      "active_users": 2020,
+      "morale": 0.7487494622388667,
+      "trust": 0.5,
+      "revenue": 74090.25229815337,
+      "active_users": 1904,
       "traffic": 10000,
-      "conversion_rate": 0.1255694339892375,
+      "conversion_rate": 0.11010050459630674,
       "average_order_value": 50.0,
       "seed": 42
     }
@@ -147,15 +147,15 @@
   "events": [
     {
       "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:49:50.718403",
+      "timestamp": "2026-02-07T16:41:57.623104",
       "properties": {
-        "action_id": "guest_checkout",
+        "action_id": "forced_login",
         "turn_index": 1
       }
     },
     {
       "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:50:00.961605",
+      "timestamp": "2026-02-07T16:42:01.680148",
       "properties": {
         "action_id": "express_pay",
         "turn_index": 2
@@ -166,6 +166,5 @@
   "active_risks": [
     "memory_leak"
   ],
-  "active_upgrades": [],
   "seed": 42
 }

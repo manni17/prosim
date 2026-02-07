@@ -21,6 +21,12 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [3.11.1] - 2026-02-06 (State & Dashboard Restoration)
+### Fixed
+- **Backend:** Restored `GameState` schema after accidental field deletion; resolved Pydantic validator crash.
+- **Backend:** Updated `LogEntry` to include full snapshots of `traffic`, `conversion_rate`, and `average_order_value`.
+- **UI:** Fixed `MaxPanel` data construction to correctly reference top-level log snapshots, restoring historical and live chart rendering.
+
 ## [3.11.0] - 2026-02-06 (Thinking Fast and Slow)
 ### Added
 - **Mechanic:** Implemented the "Prediction Loop" (Hypothesis Lock) for strategic decisions.

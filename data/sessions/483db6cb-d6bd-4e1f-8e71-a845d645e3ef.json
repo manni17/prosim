@@ -1,16 +1,16 @@
 {
   "health": 1.0,
-  "morale": 0.7362485340815441,
-  "trust": 0.4180286600771058,
+  "morale": 0.8,
+  "trust": 0.5,
   "traffic": 10000,
-  "conversion_rate": 0.1255694339892375,
+  "conversion_rate": 0.02,
   "average_order_value": 50.0,
-  "revenue": 82984.71699461875,
-  "active_users": 2020,
-  "churn_rate": 0.13729570098843413,
+  "revenue": 10000.0,
+  "active_users": 1000,
+  "churn_rate": 0.05,
   "cart_rate": 0.25,
-  "checkout_rate": 0.5512505377611334,
-  "payment_rate": 0.9111605369074411,
+  "checkout_rate": 0.4,
+  "payment_rate": 0.8,
   "phase": 1,
   "current_level": 1,
   "player_name": "Candidate",
@@ -104,68 +104,11 @@
       "active_users": 1200
     }
   ],
-  "history": [
-    {
-      "timestamp": "2026-02-07T16:49:50.718567",
-      "turn_index": 1,
-      "phase": 1,
-      "action_id": "guest_checkout",
-      "metrics": {
-        "health_delta": 0.0,
-        "revenue": 65755.05377611335
-      },
-      "health": 1.0,
-      "morale": 0.8,
-      "trust": 0.4180286600771058,
-      "revenue": 65755.05377611335,
-      "active_users": 1063,
-      "traffic": 10000,
-      "conversion_rate": 0.1102501075522267,
-      "average_order_value": 50.0,
-      "seed": 42
-    },
-    {
-      "timestamp": "2026-02-07T16:50:00.961685",
-      "turn_index": 2,
-      "phase": 1,
-      "action_id": "express_pay",
-      "metrics": {
-        "health_delta": 0.0,
-        "revenue": 82984.71699461875
-      },
-      "health": 1.0,
-      "morale": 0.7362485340815441,
-      "trust": 0.4180286600771058,
-      "revenue": 82984.71699461875,
-      "active_users": 2020,
-      "traffic": 10000,
-      "conversion_rate": 0.1255694339892375,
-      "average_order_value": 50.0,
-      "seed": 42
-    }
-  ],
-  "events": [
-    {
-      "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:49:50.718403",
-      "properties": {
-        "action_id": "guest_checkout",
-        "turn_index": 1
-      }
-    },
-    {
-      "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:50:00.961605",
-      "properties": {
-        "action_id": "express_pay",
-        "turn_index": 2
-      }
-    }
-  ],
+  "history": [],
+  "events": [],
   "delivered_event_ids": [],
   "active_risks": [
     "memory_leak"
   ],
-  "active_upgrades": [],
   "seed": 42
 }

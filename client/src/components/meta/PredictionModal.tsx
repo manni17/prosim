@@ -1,89 +1,107 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Zap, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { Zap, AlertCircle } from "lucide-react";
 import { clsx } from "clsx";
 
 interface PredictionModalProps {
   actionLabel: string;
-  onConfirm: (prediction: Record<string, string>) => void;
+  onConfirm: (prediction: Record<string, number>) => void;
   onCancel: () => void;
 }
 
 export const PredictionModal = ({ actionLabel, onConfirm, onCancel }: PredictionModalProps) => {
-  const [prediction, setPrediction] = useState<Record<string, string>>({
-    revenue: "neutral",
-    trust: "neutral",
+  const [prediction, setPrediction] = useState<Record<string, number>>({
+    revenue: 0,
+    trust: 0,
+    health: 0,
+    morale: 0,
   });
 
   const metrics = [
-    { id: "revenue", label: "Revenue Impact" },
-    { id: "trust", label: "Stakeholder Trust" },
+    { id: "revenue", label: "Revenue Impact", description: "Long-term growth vs immediate cash." },
+    { id: "trust", label: "Stakeholder Trust", description: "Confidence from the board & users." },
+    { id: "health", label: "System Health", description: "Stability vs speed of execution." },
+    { id: "morale", label: "Team Morale", description: "Engineering fatigue & alignment." },
   ];
 
-  const options = [
-    { id: "increase", label: "Increase", icon: TrendingUp, color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/50" },
-    { id: "neutral", label: "Neutral", icon: Minus, color: "text-slate-400", bg: "bg-slate-500/10", border: "border-slate-500/30" },
-    { id: "decrease", label: "Decrease", icon: TrendingDown, color: "text-rose-500", bg: "bg-rose-500/10", border: "border-rose-500/50" },
-  ];
+  const getLabel = (val: number) => {
+    if (val === 2) return "Massive Increase";
+    if (val === 1) return "Slight Increase";
+    if (val === 0) return "Neutral";
+    if (val === -1) return "Slight Decrease";
+    if (val === -2) return "Massive Decrease";
+    return "Neutral";
+  };
+
+  const getColor = (val: number) => {
+    if (val > 0) return "text-emerald-400";
+    if (val < 0) return "text-rose-400";
+    return "text-slate-400";
+  };
 
   return (
-    <div className="fixed inset-0 z-[400] flex items-center justify-center p-6 bg-slate-950/60 backdrop-blur-md pointer-events-auto">
+    <div className="fixed inset-0 z-[400] flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-xl pointer-events-auto">
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="glass-window w-full max-w-[450px] p-8 border-white/20 shadow-[0_50px_100px_rgba(0,0,0,0.6)]"
+        className="glass-window w-full max-w-[550px] p-10 border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)]"
       >
-        <div className="flex items-center gap-2 text-[10px] font-black text-primary tracking-[0.2em] uppercase mb-6">
-          <Zap className="w-3 h-3" /> Strategic Forecast Required
+        <div className="flex items-center gap-3 text-[10px] font-black text-primary tracking-[0.3em] uppercase mb-8">
+          <Zap className="w-4 h-4 fill-primary" /> Strategic Directive Allocation
         </div>
 
-        <h2 className="text-2xl font-black text-display mb-2 uppercase italic italic">
+        <h2 className="text-3xl font-black text-display mb-3 uppercase italic tracking-tighter">
           Hypothesis Lock
         </h2>
-        <p className="text-sm text-slate-400 mb-8 leading-relaxed">
-          Predict the impact of <span className="text-white font-bold">"{actionLabel}"</span> before committing to the directive. Your Product Sense score depends on accuracy.
+        <p className="text-sm text-slate-400 mb-10 leading-relaxed max-w-[400px]">
+          Predict the directional impact of <span className="text-white font-bold underline decoration-primary">"{actionLabel}"</span>. 
+          The Board will grade your product sense based on the accuracy of this forecast.
         </p>
 
         <div className="space-y-8">
           {metrics.map((metric) => (
-            <div key={metric.id}>
-              <p className="text-[10px] font-bold text-caption tracking-widest uppercase mb-3">{metric.label}</p>
-              <div className="grid grid-cols-3 gap-2">
-                {options.map((opt) => {
-                  const isActive = prediction[metric.id] === opt.id;
-                  return (
-                    <button
-                      key={opt.id}
-                      onClick={() => setPrediction(prev => ({ ...prev, [metric.id]: opt.id }))}
-                      className={clsx(
-                        "flex flex-col items-center gap-2 p-3 rounded-xl border transition-all duration-200",
-                        isActive ? `${opt.bg} ${opt.border} scale-[1.02]` : "bg-white/5 border-white/5 hover:bg-white/10"
-                      )}
-                    >
-                      <opt.icon className={clsx("w-5 h-5", isActive ? opt.color : "text-slate-500")} />
-                      <span className={clsx("text-[10px] font-bold uppercase tracking-tighter", isActive ? "text-white" : "text-slate-500")}>
-                        {opt.label}
-                      </span>
-                    </button>
-                  );
-                })}
+            <div key={metric.id} className="space-y-4">
+              <div className="flex justify-between items-end">
+                <div>
+                  <p className="text-xs font-bold text-white uppercase tracking-wider">{metric.label}</p>
+                  <p className="text-[10px] text-slate-500">{metric.description}</p>
+                </div>
+                <span className={clsx("text-[10px] font-black font-mono uppercase", getColor(prediction[metric.id]))}>
+                  {getLabel(prediction[metric.id])}
+                </span>
               </div>
+              <input
+                type="range"
+                min="-2"
+                max="2"
+                step="1"
+                value={prediction[metric.id]}
+                onChange={(e) => setPrediction(prev => ({ ...prev, [metric.id]: parseInt(e.target.value) }))}
+                className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary"
+              />
             </div>
           ))}
         </div>
 
-        <div className="flex gap-3 mt-10">
+        <div className="flex items-start gap-3 p-4 bg-primary/5 border border-primary/20 rounded-xl mt-10">
+          <AlertCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+          <p className="text-[10px] text-slate-400 leading-tight">
+            Commitment is final. Once the directive is issued, the simulation will advance and telemetry will be compared against your forecast.
+          </p>
+        </div>
+
+        <div className="flex gap-4 mt-10">
           <button
             onClick={onCancel}
-            className="flex-1 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl font-bold text-xs tracking-widest uppercase transition-all"
+            className="flex-1 py-5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl font-bold text-[10px] tracking-[0.2em] uppercase transition-all"
           >
             Abort
           </button>
           <button
             onClick={() => onConfirm(prediction)}
-            className="flex-[2] py-4 bg-primary hover:bg-primary-hover border border-white/10 rounded-2xl font-bold text-xs tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+            className="flex-[2] py-5 bg-primary hover:bg-primary-hover border border-white/20 rounded-2xl font-black text-[10px] tracking-[0.2em] uppercase transition-all shadow-[0_0_30px_rgba(59,130,246,0.4)]"
           >
-            Commit Strategy
+            Issue Directive
           </button>
         </div>
       </motion.div>

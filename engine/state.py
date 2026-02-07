@@ -15,12 +15,15 @@ class LogEntry(BaseModel):
     phase: int
     action_id: str
     metrics: Dict[str, float]
-    # Snapshots for AAR (WEB-07)
+    # Snapshots for AAR & MaxPanel (WEB-07, SYS-11)
     health: float = 0.0
     morale: float = 0.0
     trust: float = 0.0
     revenue: float = 0.0
     active_users: int = 0
+    traffic: int = 0
+    conversion_rate: float = 0.0
+    average_order_value: float = 0.0
     seed: int
 
 class GameState(BaseModel):
@@ -49,12 +52,15 @@ class GameState(BaseModel):
     termination_details: Dict[str, str] = Field(default_factory=dict, description="Reason and notes for game over")
     strategy_archetype: str = Field(default="default", description="Active strategic path")
     product_sense_score: float = Field(default=0.0, description="Accuracy of strategic predictions")
+    last_prediction_accuracy: float = Field(default=0.0, description="Accuracy percentage of last prediction")
     last_prediction_results: Optional[Dict[str, Any]] = Field(default=None, description="Results of the most recent prediction")
     points: Dict[str, int] = Field(default_factory=dict, description="Score points")
+    historical_data: List[Dict[str, Any]] = Field(default_factory=list, description="Static backstory for charts")
     history: List[LogEntry] = Field(default_factory=list, description="Action history")
     events: List[Dict[str, Any]] = Field(default_factory=list, description="Raw event stream")
     delivered_event_ids: List[str] = Field(default_factory=list, description="IDs of narrative events delivered")
     active_risks: List[str] = Field(default_factory=list, description="Active hidden risks (e.g., memory_leak)")
+    active_upgrades: List[str] = Field(default_factory=list, description="Resolved systemic issues (e.g., kyc_fix)")
     seed: int = Field(..., description="RNG Seed for determinism")
 
     @field_validator('health', 'morale', 'trust')

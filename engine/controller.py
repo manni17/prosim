@@ -19,6 +19,11 @@ class SimulationController:
         self.all_emails = self.content_manager.get_emails()
         self.all_chats = self.content_manager.get_chats()
         
+        # Load Backstory for charts (Lead Debugger requirement)
+        if not self.state.historical_data:
+            analytics = self.content_manager.load_analytics(state.strategy_archetype)
+            self.state.historical_data = analytics.get("history", [])
+        
         # Dynamic inbox/chats list
         self.inbox: List[NarrativeContent] = []
         self.chats: List[NarrativeContent] = []
@@ -117,11 +122,18 @@ class SimulationController:
             if action_id in ["floodgate", "velvet", "frictionless"]:
                 self.state.strategy_archetype = action_id
             
+            # --- Upgrade Capture (Architect Spec) ---
+            if action_id == "kyc_fix":
+                if "kyc_fix" not in self.state.active_upgrades:
+                    self.state.active_upgrades.append("kyc_fix")
+            
             self.track("turn_start", {"action_id": action_id, "turn_index": len(self.state.history) + 1})
 
             # Capture baseline for prediction verification
             pre_revenue = self.state.revenue
             pre_trust = self.state.trust
+            pre_health = self.state.health
+            pre_morale = self.state.morale
 
             mods = self.state.physics_modifiers
 
@@ -164,31 +176,56 @@ class SimulationController:
             if prediction:
                 results = {}
                 score_gain = 0
+                match_count = 0
+                total_metrics = 4
                 
+                def check_accuracy(predicted_val, actual_delta):
+                    # predicted_val is -2 to +2
+                    # actual_delta is float
+                    actual_dir = 1 if actual_delta > 0.001 else -1 if actual_delta < -0.001 else 0
+                    pred_dir = 1 if predicted_val > 0 else -1 if predicted_val < 0 else 0
+                    return actual_dir == pred_dir
+
                 # Check Revenue
-                rev_delta = self.state.revenue - pre_revenue
-                rev_dir = "increase" if rev_delta > 0 else "decrease" if rev_delta < 0 else "neutral"
-                if prediction.get("revenue") == rev_dir:
-                    score_gain += 10
-                    results["revenue"] = "CORRECT"
-                else:
-                    results["revenue"] = "INCORRECT"
+                rev_acc = check_accuracy(prediction.get("revenue", 0), self.state.revenue - pre_revenue)
+                results["revenue"] = "CORRECT" if rev_acc else "INCORRECT"
+                if rev_acc: match_count += 1
                 
                 # Check Trust
-                trust_delta = self.state.trust - pre_trust
-                trust_dir = "increase" if trust_delta > 0.001 else "decrease" if trust_delta < -0.001 else "neutral"
-                if prediction.get("trust") == trust_dir:
-                    score_gain += 10
-                    results["trust"] = "CORRECT"
-                else:
-                    results["trust"] = "INCORRECT"
+                trust_acc = check_accuracy(prediction.get("trust", 0), self.state.trust - pre_trust)
+                results["trust"] = "CORRECT" if trust_acc else "INCORRECT"
+                if trust_acc: match_count += 1
+
+                # Check Health
+                health_acc = check_accuracy(prediction.get("health", 0), self.state.health - pre_health)
+                results["health"] = "CORRECT" if health_acc else "INCORRECT"
+                if health_acc: match_count += 1
+
+                # Check Morale
+                morale_acc = check_accuracy(prediction.get("morale", 0), self.state.morale - pre_morale)
+                results["morale"] = "CORRECT" if morale_acc else "INCORRECT"
+                if morale_acc: match_count += 1
+                
+                accuracy_pct = (match_count / total_metrics) * 100
+                score_gain = match_count * 10
+                if accuracy_pct >= 80:
+                    self.state.revenue += 5000 # Bonus revenue for high product sense
                 
                 self.state.product_sense_score += score_gain
+                self.state.last_prediction_accuracy = accuracy_pct
                 self.state.last_prediction_results = {
                     "results": results,
                     "score_gain": score_gain,
-                    "actual": {"revenue": rev_dir, "trust": trust_dir}
+                    "accuracy": accuracy_pct
                 }
+                
+                # Formal event tracking (WEB-24 spec)
+                self.track("prediction_analysis", {
+                    "accuracy": accuracy_pct,
+                    "score_gain": score_gain,
+                    "forecast": prediction,
+                    "actual": {"revenue": rev_dir, "trust": trust_dir, "health": health_acc, "morale": morale_acc}
+                })
             else:
                 self.state.last_prediction_results = None
 
@@ -222,6 +259,20 @@ class SimulationController:
         self.state.active_users = max(0, self.state.active_users - lost_users + new_users)
 
     def _recalculate_revenue(self) -> None:
+        # --- Archetype Constraints (Lead Systems Architect Fix) ---
+        if self.state.strategy_archetype == "floodgate":
+            # Force high traffic, but crush conversion unless KYC is fixed
+            self.state.traffic = max(self.state.traffic, 50000)
+            if "kyc_fix" not in self.state.active_upgrades:
+                # Force conversion to 0.4%
+                self.state.cart_rate = 0.05
+                self.state.checkout_rate = 0.10
+                self.state.payment_rate = 0.80
+        elif self.state.strategy_archetype == "velvet":
+            # Force low traffic, high AOV
+            self.state.traffic = min(self.state.traffic, 5000)
+            self.state.average_order_value = max(self.state.average_order_value, 150.0)
+
         visitors = self.state.traffic
         conv_mult = self.state.physics_modifiers["conv"]
         carts = visitors * self.state.cart_rate

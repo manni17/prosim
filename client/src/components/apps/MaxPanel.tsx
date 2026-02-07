@@ -58,10 +58,10 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
          const entry = gameState.history[visualizedTurn - 1];
          return {
            revenue: entry.revenue,
-           traffic: entry.traffic || 0,
-           active_users: entry.metrics?.active_users || 0,
-           conversion_rate: entry.metrics?.conversion_rate || 0,
-           average_order_value: entry.metrics?.average_order_value || 0
+           traffic: entry.traffic,
+           active_users: entry.active_users,
+           conversion_rate: entry.conversion_rate,
+           average_order_value: entry.average_order_value
          };
       }
     }
@@ -150,33 +150,48 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
     { id: "conversion_rate", label: "Conversion", value: `${(progConversion * 100).toFixed(2)}%`, icon: TrendingUp, color: "text-purple-500", theme: "purple" },
   ];
 
-  // -- Data Construction --
-  const historyData = (analytics.history || []).map((h) => ({
-    name: h.month || h.name,
-    revenue: h.revenue,
-    traffic: h.traffic || 0,
-    active_users: h.active_users || 1000,
-    conversion_rate: h.traffic > 0 ? (h.revenue / (h.traffic * 50)) : 0.02,
-    average_order_value: 50,
-    type: "historical"
-  }));
-  
-  const committedLive = gameState.history.slice(0, visualizedTurn).map((h) => ({
-    name: `T${h.turn_index}`,
-    revenue: h.revenue,
-    traffic: h.traffic || 0,
-    active_users: h.metrics?.active_users || 0,
-    conversion_rate: h.metrics?.conversion_rate || 0,
-    average_order_value: h.metrics?.average_order_value || 0,
-    type: "live"
-  }));
+  // -- Data Construction (Lead Frontend Debugger Fix) --
+  const chartData = useMemo(() => {
+    // 1. Always load 12-month history from state
+    const historyRaw = gameState.historical_data || [];
+    const backstory = historyRaw.map(d => ({
+      name: d.month || d.name,
+      revenue: d.revenue,
+      traffic: d.traffic || 0,
+      active_users: d.active_users,
+      conversion_rate: d.conversion_rate || 0.02,
+      average_order_value: d.average_order_value || 50,
+      isHistory: true
+    }));
 
-  let chartData = [...historyData, ...committedLive];
-  if (interpolatedPoint) chartData.push(interpolatedPoint);
+    // 2. Add Live Turns (up to visualized point)
+    const liveRaw = gameState.history || [];
+    const confirmed = liveRaw.slice(0, visualizedTurn).map(d => ({
+      name: `Turn ${d.turn_index}`,
+      revenue: d.revenue,
+      traffic: d.traffic,
+      active_users: d.active_users,
+      conversion_rate: d.conversion_rate,
+      average_order_value: d.average_order_value,
+      isHistory: false
+    }));
 
-  if (chartData.length === 0) {
-    chartData = [{ name: 'Init', revenue: 0, traffic: 0, conversion_rate: 0, average_order_value: 0, type: "init" }];
-  }
+    // 3. Merge
+    let combined = [...backstory, ...confirmed];
+
+    // 4. Add Active Interpolation Point (if animating)
+    if (interpolatedPoint) {
+      combined.push({
+        ...interpolatedPoint,
+        name: `Turn ${interpolatedPoint.name.replace(/\D/g, '')}`,
+        isHistory: false
+      });
+    }
+
+    // 5. Safety: Prevent empty chart crash
+    if (combined.length === 0) return [{name: 'Init', revenue: 0, traffic: 0, active_users: 0, conversion_rate: 0, average_order_value: 0, isHistory: false}];
+    return combined;
+  }, [gameState.historical_data, gameState.history, visualizedTurn, interpolatedPoint]);
 
   const activeHex = {
     emerald: "#10b981",
@@ -241,9 +256,9 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
                   labelStyle={{ color: "hsl(var(--text-muted))", fontSize: 12, fontWeight: "bold" }}
                 />
                 
-                {historyData.length > 0 && (
+                {chartData.some(d => d.isHistory) && (
                   <ReferenceLine 
-                    x={historyData[historyData.length - 1].name} 
+                    x={chartData.filter(d => d.isHistory).pop()?.name} 
                     stroke="hsl(var(--text-muted))" 
                     strokeDasharray="3 3" 
                     label={{ value: "Backstory", position: "insideTopRight", fill: "hsl(var(--text-muted))", fontSize: 10 }} 
@@ -253,7 +268,7 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
                 {gameState.history.slice(0, visualizedTurn).map((h) => (
                   <ReferenceLine 
                     key={h.turn_index} 
-                    x={`T${h.turn_index}`} 
+                    x={`Turn ${h.turn_index}`} 
                     stroke="hsl(var(--primary))" 
                     strokeDasharray="3 3" 
                     label={{ value: `T${h.turn_index}`, position: "insideTopLeft", fill: "hsl(var(--primary))", fontSize: 10, fontWeight: "bold" }} 

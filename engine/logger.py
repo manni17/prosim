@@ -22,6 +22,9 @@ class TelemetryLogger:
             trust=self.state.trust,
             revenue=self.state.revenue,
             active_users=self.state.active_users,
+            traffic=self.state.traffic,
+            conversion_rate=self.state.conversion_rate,
+            average_order_value=self.state.average_order_value,
             seed=self.state.seed
         )
         self.state.history.append(entry)
