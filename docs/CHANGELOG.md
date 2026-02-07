@@ -21,6 +21,13 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [3.9.2] - 2026-02-06 (Retention Engine)
+### Added
+- **Physics:** Implemented dynamic User Churn logic based on Trust and Health (SYS-11).
+- **Physics:** Updated Revenue model to include Recurring Revenue from active user base.
+- **UI:** Added "Active Users" metric card to MaxPanel with full interpolation support.
+- **UI:** Added detailed Revenue tooltips (Internal split: Recurring vs. Transactional).
+
 ## [3.9.1] - 2026-02-06 (Tutorial Restoration)
 ### Fixed
 - **UI:** Uncommented `TutorialOverlay` in `Index.tsx` to restore the onboarding tour for new sessions.

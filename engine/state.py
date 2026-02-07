@@ -20,6 +20,7 @@ class LogEntry(BaseModel):
     morale: float = 0.0
     trust: float = 0.0
     revenue: float = 0.0
+    active_users: int = 0
     seed: int
 
 class GameState(BaseModel):
@@ -30,6 +31,9 @@ class GameState(BaseModel):
     conversion_rate: float = Field(default=0.02, description="Conversion Rate (0.0 - 1.0)")
     average_order_value: float = Field(default=50.0, description="Average Order Value ($)")
     revenue: float = Field(default=10000.0, description="Calculated Revenue")
+    # Retention Physics (SYS-11)
+    active_users: int = Field(default=1000, description="Current install base")
+    churn_rate: float = Field(default=0.05, description="Monthly churn rate (0.0 - 1.0)")
     # Funnel Physics (SYS-06)
     cart_rate: float = Field(default=0.25, description="Visitors -> Cart")
     checkout_rate: float = Field(default=0.40, description="Cart -> Checkout")

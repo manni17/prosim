@@ -59,6 +59,7 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
          return {
            revenue: entry.revenue,
            traffic: entry.traffic || 0,
+           active_users: entry.metrics?.active_users || 0,
            conversion_rate: entry.metrics?.conversion_rate || 0,
            average_order_value: entry.metrics?.average_order_value || 0
          };
@@ -70,17 +71,19 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
       return {
         revenue: last.revenue,
         traffic: last.traffic || 0,
+        active_users: 1000,
         conversion_rate: last.traffic ? (last.revenue / (last.traffic * 50)) : 0.02,
         average_order_value: 50
       };
     }
     
-    return { revenue: 0, traffic: 0, conversion_rate: 0, average_order_value: 0 };
+    return { revenue: 0, traffic: 0, active_users: 0, conversion_rate: 0, average_order_value: 0 };
   }, [visualizedTurn, gameState.history, analytics]);
 
   // Metrics Cards Hooks (Now with Initial Value!)
   const progRevenue = useProgressiveValue(gameState.revenue, 15000, prevValues.revenue);
   const progTraffic = useProgressiveValue(gameState.traffic, 15000, prevValues.traffic);
+  const progActiveUsers = useProgressiveValue(gameState.active_users, 15000, prevValues.active_users);
   const progConversion = useProgressiveValue(gameState.conversion_rate, 15000, prevValues.conversion_rate);
   const progAOV = useProgressiveValue(gameState.average_order_value, 15000, prevValues.average_order_value);
 
@@ -105,6 +108,7 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
         
         const currentRevenue = startValues.revenue + (targetEntry.revenue - startValues.revenue) * progress;
         const currentTraffic = startValues.traffic + ((targetEntry.traffic || 0) - startValues.traffic) * progress;
+        const currentActiveUsers = (startValues.active_users || 0) + ((targetEntry.metrics?.active_users || 0) - (startValues.active_users || 0)) * progress;
         const currentConversion = (startValues.conversion_rate || 0) + ((targetEntry.metrics?.conversion_rate || 0) - (startValues.conversion_rate || 0)) * progress;
         const currentAOV = (startValues.average_order_value || 0) + ((targetEntry.metrics?.average_order_value || 0) - (startValues.average_order_value || 0)) * progress;
 
@@ -112,6 +116,7 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
           name: `T${targetEntry.turn_index}`,
           revenue: currentRevenue,
           traffic: currentTraffic,
+          active_users: currentActiveUsers,
           conversion_rate: currentConversion,
           average_order_value: currentAOV,
           type: "live"
@@ -141,8 +146,8 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
   const metrics = [
     { id: "revenue", label: "Net Revenue", value: `$${progRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}`, icon: DollarSign, color: "text-emerald-500", theme: "emerald" },
     { id: "traffic", label: "Daily Traffic", value: Math.round(progTraffic).toLocaleString(), icon: Users, color: "text-blue-500", theme: "blue" },
+    { id: "active_users", label: "Active Users", value: Math.round(progActiveUsers).toLocaleString(), icon: Users, color: "text-blue-400", theme: "blue" },
     { id: "conversion_rate", label: "Conversion", value: `${(progConversion * 100).toFixed(2)}%`, icon: TrendingUp, color: "text-purple-500", theme: "purple" },
-    { id: "average_order_value", label: "AOV", value: `$${progAOV.toFixed(0)}`, icon: Activity, color: "text-pink-500", theme: "pink" },
   ];
 
   // -- Data Construction --
@@ -150,6 +155,7 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
     name: h.month || h.name,
     revenue: h.revenue,
     traffic: h.traffic || 0,
+    active_users: 1000,
     conversion_rate: h.traffic > 0 ? (h.revenue / (h.traffic * 50)) : 0.02,
     average_order_value: 50,
     type: "historical"
@@ -159,6 +165,7 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
     name: `T${h.turn_index}`,
     revenue: h.revenue,
     traffic: h.traffic || 0,
+    active_users: h.metrics?.active_users || 0,
     conversion_rate: h.metrics?.conversion_rate || 0,
     average_order_value: h.metrics?.average_order_value || 0,
     type: "live"

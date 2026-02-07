@@ -152,6 +152,7 @@ class SimulationController:
             self.state.checkout_rate = max(0.0, min(1.0, self.state.checkout_rate + checkout_delta))
             self.state.payment_rate = max(0.0, min(1.0, self.state.payment_rate + payment_delta))
             
+            self._calculate_churn()
             self._recalculate_revenue()
             self.logger.log_turn(action_id, {"health_delta": health_delta, "revenue": self.state.revenue})
 
@@ -167,6 +168,21 @@ class SimulationController:
             print(f"Error executing turn: {e}")
             self.state = backup_state
 
+    def _calculate_churn(self) -> None:
+        """Calculates user churn and updates active user base (SYS-11)."""
+        base_churn = 0.05
+        # Penalty: Low trust causes high churn. Low health causes slight churn (neglect).
+        dynamic_churn = base_churn + (1.0 - self.state.trust) * 0.15 + (1.0 - self.state.health) * 0.05
+        self.state.churn_rate = max(0.0, min(1.0, dynamic_churn))
+        
+        lost_users = int(self.state.active_users * self.state.churn_rate)
+        
+        # New users come from current turn's traffic * conversion
+        # (We use the pre-calculated conversion rate or a simplified one)
+        new_users = int(self.state.traffic * self.state.conversion_rate)
+        
+        self.state.active_users = max(0, self.state.active_users - lost_users + new_users)
+
     def _recalculate_revenue(self) -> None:
         visitors = self.state.traffic
         conv_mult = self.state.physics_modifiers["conv"]
@@ -179,7 +195,12 @@ class SimulationController:
         else:
             self.state.conversion_rate = 0.0
             
-        self.state.revenue = purchases * self.state.average_order_value
+        # Revenue = (Recurring from Active Users) + (Transactional from New Purchases)
+        subscription_fee = 10.0 # Standard ARPU
+        recurring_rev = self.state.active_users * subscription_fee
+        transactional_rev = purchases * self.state.average_order_value
+        
+        self.state.revenue = recurring_rev + transactional_rev
 
     def check_game_over(self) -> None:
         if self.state.status != 'ACTIVE':

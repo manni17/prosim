@@ -21,6 +21,7 @@ class TelemetryLogger:
             morale=self.state.morale,
             trust=self.state.trust,
             revenue=self.state.revenue,
+            active_users=self.state.active_users,
             seed=self.state.seed
         )
         self.state.history.append(entry)

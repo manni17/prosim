@@ -3,6 +3,20 @@
 
 ---
 
+## Entry 44: The Leaky Bucket
+**Date:** Feb 06, 2026
+**Phase:** Phase 8 (Level 2 Expansion) - **Physics**
+
+### 1. Modeling Recurring Revenue
+With `SYS-11`, we have transitioned proSIM from a purely transactional e-commerce model to a hybrid SaaS/Subscription model.
+* **The Problem:** In the previous version, every turn started with a "clean slate." If you didn't drive traffic, you made $0. This failed to capture the compounding value of a happy customer base (or the compounding damage of an unhappy one).
+* **The Solution:** We introduced the `active_users` state and a dynamic `churn_rate`.
+* **The Physics of Trust:** Trust is no longer just a "score." It is now the primary variable in the Churn formula. Low trust (0.2) results in ~17% churn per turn, effectively destroying the company's valuation even if traffic remains high.
+* **The Multi-Channel Revenue:** By splitting revenue into `Recurring` (Active Users * Fee) and `Transactional` (New Conversions * AOV), we force the player to balance "Growth" (Traffic) with "Retention" (Trust/Morale).
+* **Pedagogical Impact:** This teaches the student the most important lesson in high-growth startups: Growth is useless if you have a leaky bucket.
+
+---
+
 ## Entry 41: The Catch-Up
 **Date:** Feb 04, 2026
 **Phase:** Phase 6 (Game Design & Engagement) - **Animation**
