@@ -155,7 +155,7 @@ export const MaxPanel = ({ gameState, analytics, sessionId }: MaxPanelProps) => 
     name: h.month || h.name,
     revenue: h.revenue,
     traffic: h.traffic || 0,
-    active_users: 1000,
+    active_users: h.active_users || 1000,
     conversion_rate: h.traffic > 0 ? (h.revenue / (h.traffic * 50)) : 0.02,
     average_order_value: 50,
     type: "historical"

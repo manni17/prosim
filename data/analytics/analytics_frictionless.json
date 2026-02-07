@@ -3,17 +3,17 @@
   "sources": { "Viral": 70, "Organic": 30 },
   "retention": [[100, 50, 40], [100, 55, 45]],
   "history": [
-    { "month": "Jan", "revenue": 5000, "traffic": 2000 },
-    { "month": "Feb", "revenue": 5500, "traffic": 3000 },
-    { "month": "Mar", "revenue": 6000, "traffic": 5000 },
-    { "month": "Apr", "revenue": 7000, "traffic": 8000 },
-    { "month": "May", "revenue": 8000, "traffic": 12000 },
-    { "month": "Jun", "revenue": 9000, "traffic": 15000 },
-    { "month": "Jul", "revenue": 10000, "traffic": 18000 },
-    { "month": "Aug", "revenue": 11000, "traffic": 20000 },
-    { "month": "Sep", "revenue": 12000, "traffic": 22000 },
-    { "month": "Oct", "revenue": 12500, "traffic": 23000 },
-    { "month": "Nov", "revenue": 13000, "traffic": 24000 },
-    { "month": "Dec", "revenue": 13500, "traffic": 25000 }
+    { "month": "Jan", "revenue": 5000, "traffic": 2000, "active_users": 500 },
+    { "month": "Feb", "revenue": 5500, "traffic": 3000, "active_users": 550 },
+    { "month": "Mar", "revenue": 6000, "traffic": 5000, "active_users": 600 },
+    { "month": "Apr", "revenue": 7000, "traffic": 8000, "active_users": 700 },
+    { "month": "May", "revenue": 8000, "traffic": 12000, "active_users": 800 },
+    { "month": "Jun", "revenue": 9000, "traffic": 15000, "active_users": 900 },
+    { "month": "Jul", "revenue": 10000, "traffic": 18000, "active_users": 1000 },
+    { "month": "Aug", "revenue": 11000, "traffic": 20000, "active_users": 1100 },
+    { "month": "Sep", "revenue": 12000, "traffic": 22000, "active_users": 1200 },
+    { "month": "Oct", "revenue": 12500, "traffic": 23000, "active_users": 1250 },
+    { "month": "Nov", "revenue": 13000, "traffic": 24000, "active_users": 1300 },
+    { "month": "Dec", "revenue": 13500, "traffic": 25000, "active_users": 1350 }
   ]
 }
