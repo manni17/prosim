@@ -1,0 +1,106 @@
+{
+  "health": 1.0,
+  "morale": 0.8,
+  "trust": 0.51,
+  "traffic": 9000,
+  "conversion_rate": 0.1421935514826512,
+  "average_order_value": 50.0,
+  "revenue": 63987.09816719304,
+  "cart_rate": 0.25,
+  "checkout_rate": 0.6319713399228942,
+  "payment_rate": 0.9,
+  "phase": 1,
+  "current_level": 1,
+  "player_name": "Candidate",
+  "job_title": "Associate PM",
+  "tutorial_complete": false,
+  "quarterly_focus": null,
+  "physics_modifiers": {
+    "traffic": 1.0,
+    "cost": 1.0,
+    "aov": 1.0,
+    "conv": 1.0
+  },
+  "status": "ACTIVE",
+  "termination_details": {},
+  "strategy_archetype": "frictionless",
+  "points": {},
+  "history": [
+    {
+      "timestamp": "2026-02-04T23:31:13.083985",
+      "turn_index": 1,
+      "phase": 1,
+      "action_id": "forced_login",
+      "metrics": {
+        "health_delta": 0.0,
+        "revenue": 48197.133992289426
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.5,
+      "revenue": 48197.133992289426,
+      "seed": 42
+    },
+    {
+      "timestamp": "2026-02-04T23:31:26.728981",
+      "turn_index": 2,
+      "phase": 1,
+      "action_id": "status_quo",
+      "metrics": {
+        "health_delta": 0.0,
+        "revenue": 48197.133992289426
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.51,
+      "revenue": 48197.133992289426,
+      "seed": 42
+    },
+    {
+      "timestamp": "2026-02-04T23:31:34.112624",
+      "turn_index": 3,
+      "phase": 1,
+      "action_id": "frictionless",
+      "metrics": {
+        "health_delta": 0.0,
+        "revenue": 63987.09816719304
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.51,
+      "revenue": 63987.09816719304,
+      "seed": 42
+    }
+  ],
+  "events": [
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-04T23:31:13.083946",
+      "properties": {
+        "action_id": "forced_login",
+        "turn_index": 1
+      }
+    },
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-04T23:31:26.728941",
+      "properties": {
+        "action_id": "status_quo",
+        "turn_index": 2
+      }
+    },
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-04T23:31:34.112095",
+      "properties": {
+        "action_id": "frictionless",
+        "turn_index": 3
+      }
+    }
+  ],
+  "delivered_event_ids": [],
+  "active_risks": [
+    "memory_leak"
+  ],
+  "seed": 42
+}

@@ -1,0 +1,13 @@
+{
+  "name": "prosim-root",
+  "version": "1.0.0",
+  "scripts": {
+    "install:all": "pip install -r requirements.txt && cd client && npm install",
+    "start:server": "uvicorn server.api:app --reload --reload-dir server --reload-dir engine --reload-dir data --port 8000",
+    "start:client": "cd client && npm run dev",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\" --names \"BRAIN,FACE\" --prefix-colors \"green,blue\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "chat_launch_1",
+    "type": "noise",
+    "sender": "Dave (Lead Dev)",
+    "subject": "General",
+    "body": "If I see one more 500 error, I'm quitting. Seriously.",
+    "options": []
+  },
+  {
+    "id": "chat_launch_2",
+    "type": "politics",
+    "sender": "Sarah (CMO)",
+    "subject": "General",
+    "body": "CEO is breathing down my neck about the $100k. How's the checkout looking?",
+    "options": []
+  }
+]

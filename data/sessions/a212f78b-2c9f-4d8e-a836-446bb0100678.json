@@ -1,0 +1,110 @@
+{
+  "health": 1.0,
+  "morale": 0.8,
+  "trust": 0.4180286600771058,
+  "traffic": 10000,
+  "conversion_rate": 0.1102501075522267,
+  "average_order_value": 50.0,
+  "revenue": 55125.05377611335,
+  "cart_rate": 0.25,
+  "checkout_rate": 0.5512505377611334,
+  "payment_rate": 0.8,
+  "phase": 1,
+  "current_level": 1,
+  "status": "ACTIVE",
+  "strategy_archetype": "default",
+  "points": {
+    "score": 0
+  },
+  "history": [
+    {
+      "timestamp": "2026-02-03T23:48:47.714303",
+      "turn_index": 1,
+      "phase": 1,
+      "action_id": "guest_checkout",
+      "metrics": {
+        "health_delta": 0.0,
+        "score_delta": 0.0,
+        "morale_delta": 0.0,
+        "trust_delta": -0.08197133992289418,
+        "revenue": 55125.05377611335
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.4180286600771058,
+      "revenue": 55125.05377611335,
+      "seed": 42
+    }
+  ],
+  "events": [
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-03T23:48:47.714136",
+      "properties": {
+        "action_id": "guest_checkout",
+        "turn_index": 1
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:48:47.714269",
+      "properties": {
+        "source": "direct",
+        "device": "desktop"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:48:47.714278",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:48:47.714283",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:48:47.714286",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:48:47.714289",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "add_to_cart",
+      "timestamp": "2026-02-03T23:48:47.714293",
+      "properties": {
+        "sku": "GIFT_CARD_B2B",
+        "price": 50.0
+      }
+    },
+    {
+      "event_name": "purchase",
+      "timestamp": "2026-02-03T23:48:47.714296",
+      "properties": {
+        "value": 50.0,
+        "items": 1
+      }
+    }
+  ],
+  "delivered_event_ids": [],
+  "active_risks": [
+    "memory_leak"
+  ],
+  "seed": 42
+}

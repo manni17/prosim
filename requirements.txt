@@ -1,0 +1,9 @@
+pydantic>=2.0
+rich
+click
+fastapi
+uvicorn
+requests
+httpx
+pytest
+pytest-cov

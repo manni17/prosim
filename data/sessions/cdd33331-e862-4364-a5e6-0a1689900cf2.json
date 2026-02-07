@@ -1,0 +1,60 @@
+{
+  "health": 1.0,
+  "morale": 0.8,
+  "trust": 0.5,
+  "traffic": 10000,
+  "conversion_rate": 0.09639426798457884,
+  "average_order_value": 50.0,
+  "revenue": 48197.133992289426,
+  "cart_rate": 0.25,
+  "checkout_rate": 0.4819713399228942,
+  "payment_rate": 0.8,
+  "phase": 1,
+  "current_level": 1,
+  "player_name": "Candidate",
+  "job_title": "Associate PM",
+  "tutorial_complete": false,
+  "quarterly_focus": null,
+  "physics_modifiers": {
+    "traffic": 1.0,
+    "cost": 1.0,
+    "aov": 1.0,
+    "conv": 1.0
+  },
+  "status": "ACTIVE",
+  "termination_details": {},
+  "strategy_archetype": "default",
+  "points": {},
+  "history": [
+    {
+      "timestamp": "2026-02-04T23:22:17.152555",
+      "turn_index": 1,
+      "phase": 1,
+      "action_id": "forced_login",
+      "metrics": {
+        "health_delta": 0.0,
+        "revenue": 48197.133992289426
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.5,
+      "revenue": 48197.133992289426,
+      "seed": 42
+    }
+  ],
+  "events": [
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-04T23:22:17.152500",
+      "properties": {
+        "action_id": "forced_login",
+        "turn_index": 1
+      }
+    }
+  ],
+  "delivered_event_ids": [],
+  "active_risks": [
+    "memory_leak"
+  ],
+  "seed": 42
+}

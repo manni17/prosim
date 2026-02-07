@@ -1,0 +1,98 @@
+[
+  {
+    "id": "patch_memory",
+    "label": "Hotfix Memory Leak",
+    "category": "Engineering",
+    "description": "Deploy a quick fix for suspected memory issues.",
+    "cost": { "health": 0.1, "morale": 0.05 },
+    "efficacy": { "memory_leak": 1.0 }
+  },
+  {
+    "id": "scale_horizontal",
+    "label": "Horizontal Scaling",
+    "category": "Engineering",
+    "description": "Spin up more instances to handle request volume.",
+    "cost": { "revenue": 5000.0, "trust": 0.05 },
+    "efficacy": { "traffic_spike": 0.8, "memory_leak": 0.2 }
+  },
+  {
+    "id": "freeze_features",
+    "label": "Freeze Features",
+    "category": "Product",
+    "description": "Stop all new feature development to focus on stability.",
+    "cost": { "trust": 0.1, "revenue": 2000.0 },
+    "efficacy": { "tech_debt": 0.9, "memory_leak": 0.5 }
+  },
+  {
+    "id": "disable_flags",
+    "label": "Disable Feature Flag",
+    "category": "Product",
+    "description": "Roll back the most recent feature release.",
+    "cost": { "trust": 0.05 },
+    "efficacy": { "memory_leak": 0.7, "new_feature_bug": 1.0 }
+  },
+  {
+    "id": "email_stakeholders",
+    "label": "Email Stakeholders",
+    "category": "Comms",
+    "description": "Provide a transparent update on system status.",
+    "cost": { "health": 0.05 },
+    "efficacy": { "trust_erosion": 0.6 }
+  },
+  {
+    "id": "team_meeting",
+    "label": "All-Hands Meeting",
+    "category": "Comms",
+    "description": "Align the team and address burnout concerns.",
+    "cost": { "revenue": 1000.0 },
+    "efficacy": { "morale_drop": 0.7 }
+  },
+  {
+    "id": "code_audit",
+    "label": "Security Audit",
+    "category": "Engineering",
+    "description": "Verify code integrity and search for vulnerabilities.",
+    "cost": { "health": 0.15 },
+    "efficacy": { "security_breach": 1.0 }
+  },
+  {
+    "id": "database_index",
+    "label": "Optimize Indices",
+    "category": "Engineering",
+    "description": "Improve database query performance.",
+    "cost": { "morale": 0.05 },
+    "efficacy": { "db_latency": 0.9 }
+  },
+  {
+    "id": "simplify_ux",
+    "label": "Simplify Checkout",
+    "category": "Product",
+    "description": "Remove unnecessary steps from the user journey.",
+    "cost": { "trust": 0.02 },
+    "efficacy": { "checkout_friction": 0.8 }
+  },
+  {
+    "id": "referral_bonus",
+    "label": "Referral Program",
+    "category": "Product",
+    "description": "Incentivize users to invite others.",
+    "cost": { "revenue": 5000.0 },
+    "efficacy": { "low_traffic": 0.5 }
+  },
+  {
+    "id": "press_release",
+    "label": "Public Apology",
+    "category": "Comms",
+    "description": "Admit fault publicly to regain user trust.",
+    "cost": { "trust": 0.2 },
+    "efficacy": { "public_outrage": 0.9 }
+  },
+  {
+    "id": "hiring_sprint",
+    "label": "Contractor Sprint",
+    "category": "Engineering",
+    "description": "Bring in external help to speed up fixes.",
+    "cost": { "revenue": 10000.0, "morale": 0.1 },
+    "efficacy": { "backlog_pressure": 0.8 }
+  }
+]

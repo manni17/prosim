@@ -1,0 +1,31 @@
+{
+  "phase_id": 1,
+  "title": "Campaign: Steller Launch",
+  "description": "Navigate the first 12 turns of Steller's growth.",
+  "actions": [
+    { "id": "guest_checkout", "label": "Guest Checkout", "cost": { "trust": [0.05, 0.1] }, "reward": { "checkout_rate": [0.15, 0.2] }, "description": "" },
+    { "id": "forced_login", "label": "Forced Login", "cost": { "checkout_rate": [0.05, 0.1] }, "reward": { "revenue": [2000, 5000] }, "description": "" },
+    { "id": "express_pay", "label": "Express Pay", "cost": { "morale": [0.05, 0.1] }, "reward": { "payment_rate": [0.1, 0.15] }, "description": "" },
+    { "id": "status_quo", "label": "No Change", "cost": {}, "reward": { "trust": [0.01, 0.01] }, "description": "" },
+    { "id": "floodgate", "label": "Floodgate", "cost": { "average_order_value": [15, 15], "cart_rate": [0.05, 0.05] }, "reward": { "traffic": [5000, 5000] }, "description": "" },
+    { "id": "velvet", "label": "Velvet", "cost": { "traffic": [2000, 2000] }, "reward": { "average_order_value": [40, 40], "trust": [0.1, 0.15] }, "description": "" },
+    { "id": "frictionless", "label": "Frictionless", "cost": { "traffic": [1000, 1000] }, "reward": { "checkout_rate": [0.15, 0.15], "payment_rate": [0.1, 0.1] }, "description": "" },
+    { "id": "influencer_yes", "label": "Influencer Yes", "cost": { "morale": [0.1, 0.15], "revenue": [5000, 5000] }, "reward": { "traffic": [20000, 30000] }, "description": "" },
+    { "id": "influencer_no", "label": "Influencer No", "cost": { "traffic": [5000, 5000] }, "reward": { "trust": [0.1, 0.1] }, "description": "" },
+    { "id": "returns_strict", "label": "Strict Returns", "cost": { "trust": [0.2, 0.25] }, "reward": { "average_order_value": [10, 15] }, "description": "" },
+    { "id": "returns_lenient", "label": "Lenient Returns", "cost": { "average_order_value": [5, 10] }, "reward": { "trust": [0.2, 0.2] }, "description": "" },
+    { "id": "refactor_yes", "label": "Refactor Yes", "cost": { "health": [0.2, 0.3] }, "reward": { "checkout_rate": [0.1, 0.15] }, "description": "" },
+    { "id": "refactor_no", "label": "Refactor No", "cost": { "checkout_rate": [0.05, 0.1] }, "reward": { "health": [0.1, 0.1] }, "description": "" },
+    { "id": "bundle_yes", "label": "Bundle Yes", "cost": { "cart_rate": [0.05, 0.1] }, "reward": { "average_order_value": [20, 25] }, "description": "" },
+    { "id": "bundle_no", "label": "Bundle No", "cost": { "average_order_value": [10, 10] }, "reward": { "cart_rate": [0.05, 0.05] }, "description": "" },
+    { "id": "intl_launch", "label": "Intl Launch", "cost": { "trust": [0.2, 0.3], "health": [0.1, 0.1] }, "reward": { "traffic": [40000, 60000] }, "description": "" },
+    { "id": "intl_delay", "label": "Intl Delay", "cost": { "revenue": [10000, 20000] }, "reward": { "trust": [0.3, 0.3] }, "description": "" },
+    { "id": "upsell_yes", "label": "Upsell Yes", "cost": { "morale": [0.15, 0.2], "cart_rate": [0.05, 0.05] }, "reward": { "average_order_value": [15, 20] }, "description": "" },
+    { "id": "upsell_no", "label": "Upsell No", "cost": {}, "reward": { "morale": [0.05, 0.05] }, "description": "" },
+    { "id": "outsource_yes", "label": "Outsource Yes", "cost": { "morale": [0.2, 0.3], "trust": [0.1, 0.1] }, "reward": { "revenue": [15000, 25000] }, "description": "" },
+    { "id": "outsource_no", "label": "Outsource No", "cost": { "revenue": [5000, 10000] }, "reward": { "morale": [0.2, 0.2] }, "description": "" },
+    { "id": "ai_yes", "label": "AI Yes", "cost": { "trust": [0.15, 0.2], "revenue": [2000, 2000] }, "reward": { "cart_rate": [0.05, 0.1], "checkout_rate": [0.05, 0.1] }, "description": "" },
+    { "id": "ai_no", "label": "AI No", "cost": { "cart_rate": [0.05, 0.05] }, "reward": { "trust": [0.1, 0.1] }, "description": "" },
+    { "id": "final_tally", "label": "Final Tally", "cost": {}, "reward": { "score": [1, 1] }, "description": "" }
+  ]
+}

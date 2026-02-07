@@ -1,0 +1,29 @@
+{
+  "scenario_id": "memory_leak",
+  "series": [
+    {"hour": 1, "traffic": 10000, "latency": 45, "revenue": 1200},
+    {"hour": 2, "traffic": 10100, "latency": 42, "revenue": 1210},
+    {"hour": 3, "traffic": 9950, "latency": 48, "revenue": 1190},
+    {"hour": 4, "traffic": 10050, "latency": 44, "revenue": 1205},
+    {"hour": 5, "traffic": 10000, "latency": 46, "revenue": 1200},
+    {"hour": 6, "traffic": 10200, "latency": 43, "revenue": 1224},
+    {"hour": 7, "traffic": 10000, "latency": 45, "revenue": 1200},
+    {"hour": 8, "traffic": 9900, "latency": 47, "revenue": 1188},
+    {"hour": 9, "traffic": 10050, "latency": 44, "revenue": 1206},
+    {"hour": 10, "traffic": 10100, "latency": 42, "revenue": 1212},
+    {"hour": 11, "traffic": 10000, "latency": 45, "revenue": 1200},
+    {"hour": 12, "traffic": 10000, "latency": 55, "revenue": 1200},
+    {"hour": 13, "traffic": 9980, "latency": 120, "revenue": 1195},
+    {"hour": 14, "traffic": 10020, "latency": 180, "revenue": 1202},
+    {"hour": 15, "traffic": 10000, "latency": 250, "revenue": 1200},
+    {"hour": 16, "traffic": 9950, "latency": 380, "revenue": 1194},
+    {"hour": 17, "traffic": 10050, "latency": 450, "revenue": 1206},
+    {"hour": 18, "traffic": 10000, "latency": 550, "revenue": 1200},
+    {"hour": 19, "traffic": 8500, "latency": 750, "revenue": 1020},
+    {"hour": 20, "traffic": 6200, "latency": 920, "revenue": 744},
+    {"hour": 21, "traffic": 4100, "latency": 1100, "revenue": 492},
+    {"hour": 22, "traffic": 2500, "latency": 1300, "revenue": 300},
+    {"hour": 23, "traffic": 1200, "latency": 1500, "revenue": 144},
+    {"hour": 24, "traffic": 800, "latency": 1800, "revenue": 96}
+  ]
+}

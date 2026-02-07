@@ -1,0 +1,51 @@
+{
+  "health": 0.85,
+  "morale": 0.8,
+  "trust": 0.5,
+  "traffic": 10000,
+  "conversion_rate": 0.02,
+  "average_order_value": 50.0,
+  "revenue": 5000.0,
+  "cart_rate": 0.25,
+  "checkout_rate": 0.4,
+  "payment_rate": 0.8,
+  "phase": 1,
+  "current_level": 1,
+  "player_name": "Candidate",
+  "job_title": "Associate PM",
+  "tutorial_complete": true,
+  "quarterly_focus": null,
+  "physics_modifiers": {
+    "traffic": 1.0,
+    "cost": 1.0,
+    "aov": 1.0,
+    "conv": 1.0
+  },
+  "status": "GAME_OVER",
+  "strategy_archetype": "default",
+  "points": {},
+  "history": [],
+  "events": [
+    {
+      "event_name": "intervention",
+      "timestamp": "2026-02-04T18:54:04.226021",
+      "properties": {
+        "action_id": "code_audit",
+        "efficacy": 0.0
+      }
+    },
+    {
+      "event_name": "intervention",
+      "timestamp": "2026-02-04T18:54:21.500821",
+      "properties": {
+        "action_id": "referral_bonus",
+        "efficacy": 0.0
+      }
+    }
+  ],
+  "delivered_event_ids": [],
+  "active_risks": [
+    "memory_leak"
+  ],
+  "seed": 42
+}

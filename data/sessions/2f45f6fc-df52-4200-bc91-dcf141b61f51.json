@@ -1,0 +1,270 @@
+{
+  "health": 1.0,
+  "morale": 0.8,
+  "trust": 0.2433187452393645,
+  "traffic": 10000,
+  "conversion_rate": 0.17673194650790694,
+  "average_order_value": 50.0,
+  "revenue": 88365.97325395347,
+  "cart_rate": 0.25,
+  "checkout_rate": 0.8836597325395348,
+  "payment_rate": 0.8,
+  "phase": 1,
+  "status": "ACTIVE",
+  "strategy_archetype": "default",
+  "points": {
+    "score": 0
+  },
+  "history": [
+    {
+      "timestamp": "2026-02-03T23:31:39.575357",
+      "turn_index": 1,
+      "phase": 1,
+      "action_id": "guest_checkout",
+      "metrics": {
+        "health_delta": 0.0,
+        "score_delta": 0.0,
+        "morale_delta": 0.0,
+        "trust_delta": -0.08197133992289418,
+        "revenue": 55125.05377611335
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.4180286600771058,
+      "revenue": 55125.05377611335,
+      "seed": 42
+    },
+    {
+      "timestamp": "2026-02-03T23:31:39.583610",
+      "turn_index": 2,
+      "phase": 1,
+      "action_id": "guest_checkout",
+      "metrics": {
+        "health_delta": 0.0,
+        "score_delta": 0.0,
+        "morale_delta": 0.0,
+        "trust_delta": -0.09460897838524228,
+        "revenue": 70559.74793926043
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.3234196816918635,
+      "revenue": 70559.74793926043,
+      "seed": 42
+    },
+    {
+      "timestamp": "2026-02-03T23:31:39.592393",
+      "turn_index": 3,
+      "phase": 1,
+      "action_id": "guest_checkout",
+      "metrics": {
+        "health_delta": 0.0,
+        "score_delta": 0.0,
+        "morale_delta": 0.0,
+        "trust_delta": -0.08010093645249902,
+        "revenue": 88365.97325395347
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.2433187452393645,
+      "revenue": 88365.97325395347,
+      "seed": 42
+    }
+  ],
+  "events": [
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-03T23:31:39.575276",
+      "properties": {
+        "action_id": "guest_checkout",
+        "turn_index": 1
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.575326",
+      "properties": {
+        "source": "direct",
+        "device": "desktop"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.575331",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.575335",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.575338",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.575342",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "add_to_cart",
+      "timestamp": "2026-02-03T23:31:39.575346",
+      "properties": {
+        "sku": "GIFT_CARD_B2B",
+        "price": 50.0
+      }
+    },
+    {
+      "event_name": "purchase",
+      "timestamp": "2026-02-03T23:31:39.575350",
+      "properties": {
+        "value": 50.0,
+        "items": 1
+      }
+    },
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-03T23:31:39.583548",
+      "properties": {
+        "action_id": "guest_checkout",
+        "turn_index": 2
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.583586",
+      "properties": {
+        "source": "direct",
+        "device": "desktop"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.583590",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.583594",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.583596",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.583599",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "add_to_cart",
+      "timestamp": "2026-02-03T23:31:39.583602",
+      "properties": {
+        "sku": "GIFT_CARD_B2B",
+        "price": 50.0
+      }
+    },
+    {
+      "event_name": "purchase",
+      "timestamp": "2026-02-03T23:31:39.583606",
+      "properties": {
+        "value": 50.0,
+        "items": 1
+      }
+    },
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-03T23:31:39.592327",
+      "properties": {
+        "action_id": "guest_checkout",
+        "turn_index": 3
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.592367",
+      "properties": {
+        "source": "direct",
+        "device": "desktop"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.592372",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.592375",
+      "properties": {
+        "source": "direct",
+        "device": "desktop"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.592378",
+      "properties": {
+        "source": "direct",
+        "device": "desktop"
+      }
+    },
+    {
+      "event_name": "session_start",
+      "timestamp": "2026-02-03T23:31:39.592382",
+      "properties": {
+        "source": "direct",
+        "device": "mobile"
+      }
+    },
+    {
+      "event_name": "add_to_cart",
+      "timestamp": "2026-02-03T23:31:39.592385",
+      "properties": {
+        "sku": "GIFT_CARD_B2B",
+        "price": 50.0
+      }
+    },
+    {
+      "event_name": "purchase",
+      "timestamp": "2026-02-03T23:31:39.592388",
+      "properties": {
+        "value": 50.0,
+        "items": 1
+      }
+    }
+  ],
+  "delivered_event_ids": [],
+  "seed": 42
+}

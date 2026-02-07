@@ -1,0 +1,19 @@
+{
+  "funnel": { "Visitors": 5000, "Cart": 1000, "Checkout": 900, "Purchase": 800 },
+  "sources": { "Organic": 40, "Direct": 60 },
+  "retention": [[100, 60, 45], [100, 65, 50]],
+  "history": [
+    { "month": "Jan", "revenue": 8000, "traffic": 15000 },
+    { "month": "Feb", "revenue": 8200, "traffic": 14000 },
+    { "month": "Mar", "revenue": 8500, "traffic": 13000 },
+    { "month": "Apr", "revenue": 8800, "traffic": 12000 },
+    { "month": "May", "revenue": 9200, "traffic": 11000 },
+    { "month": "Jun", "revenue": 9500, "traffic": 10000 },
+    { "month": "Jul", "revenue": 9800, "traffic": 9000 },
+    { "month": "Aug", "revenue": 10200, "traffic": 8000 },
+    { "month": "Sep", "revenue": 10500, "traffic": 7000 },
+    { "month": "Oct", "revenue": 11000, "traffic": 6000 },
+    { "month": "Nov", "revenue": 11500, "traffic": 5500 },
+    { "month": "Dec", "revenue": 12000, "traffic": 5000 }
+  ]
+}
