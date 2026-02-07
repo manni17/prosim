@@ -41,6 +41,7 @@ sessions: Dict[str, SimulationController] = {}
 
 class TurnRequest(BaseModel):
     action_id: str
+    prediction: Optional[Dict[str, str]] = None
 
 class NewGameRequest(BaseModel):
     name: Optional[str] = "Candidate"
@@ -220,7 +221,7 @@ def execute_turn(request: TurnRequest, x_session_id: Annotated[str | None, Heade
         if request.action_id not in valid_actions:
             raise HTTPException(status_code=400, detail=f"Invalid action: {request.action_id}. Valid: {valid_actions}")
             
-        controller.execute_turn({"type": request.action_id})
+        controller.execute_turn({"type": request.action_id, "prediction": request.prediction})
         save_session_to_disk(x_session_id, controller.state)
         return state
         

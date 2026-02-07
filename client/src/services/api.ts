@@ -14,16 +14,20 @@ export interface GameState {
   status: 'ACTIVE' | 'VICTORY' | 'GAME_OVER' | 'REVIEW' | string;
   termination_details: { cause?: string; notes?: string };
   strategy_archetype: string;
+  product_sense_score: number;
+  last_prediction_results: any | null;
   tutorial_complete: boolean;
   player_name: string;
   job_title: string;
   history: any[];
+  active_users: number;
 }
 
 export interface ContentOption {
   label: string;
   action_id: string;
   impact_hint: string;
+  requires_prediction?: boolean;
 }
 
 export interface InboxItem {
@@ -76,10 +80,10 @@ const api = {
     }
   },
   
-  executeTurn: async (sessionId: string, actionId: string): Promise<GameState> => {
+  executeTurn: async (sessionId: string, actionId: string, prediction?: Record<string, string>): Promise<GameState> => {
     try {
       const response = await axios.post(`${BASE_URL}/turn`, 
-        { action_id: actionId },
+        { action_id: actionId, prediction },
         { headers: { 'X-Session-ID': sessionId } }
       );
       return response.data;
@@ -199,8 +203,8 @@ const api = {
     }
   },
 
-  makeDecision: async (sessionId: string, actionId: string): Promise<GameState> => {
-    return await api.executeTurn(sessionId, actionId);
+  makeDecision: async (sessionId: string, actionId: string, prediction?: Record<string, string>): Promise<GameState> => {
+    return await api.executeTurn(sessionId, actionId, prediction);
   }
 };
 

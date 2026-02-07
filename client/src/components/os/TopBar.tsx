@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { Wifi, Battery, Volume2, Heart, Zap, Shield } from "lucide-react";
+import { Wifi, Battery, Volume2, Heart, Zap, Shield, Brain } from "lucide-react";
 import { useState, useEffect } from "react";
 import { GameState } from "@/services/api";
 import { useProgressiveValue } from "@/hooks/useProgressiveValue";
+import { toast } from "sonner";
 
 interface TopBarProps {
   gameState: GameState;
@@ -14,11 +15,24 @@ export const TopBar = ({ gameState }: TopBarProps) => {
   const progHealth = useProgressiveValue(gameState.health * 100);
   const progMorale = useProgressiveValue(gameState.morale * 100);
   const progTrust = useProgressiveValue(gameState.trust * 100);
+  const progSense = useProgressiveValue(gameState.product_sense_score);
 
   useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
+    if (gameState.last_prediction_results) {
+      const results = gameState.last_prediction_results;
+      const allCorrect = Object.values(results.results).every(v => v === "CORRECT");
+      
+      if (allCorrect) {
+        toast.success("Strategic Insight: 100% Accuracy", {
+          description: `Score Gain: +${results.score_gain}`
+        });
+      } else {
+        toast.warning("Prediction Mismatch", {
+          description: `Trust: ${results.results.trust}. Revenue: ${results.results.revenue}.`
+        });
+      }
+    }
+  }, [gameState.last_prediction_results]);
 
   const formattedTime = time.toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -71,6 +85,10 @@ export const TopBar = ({ gameState }: TopBarProps) => {
           <div className="flex items-center gap-1.5 text-emerald-400">
             <Shield className="w-3 h-3" />
             <span className="text-[10px] font-bold font-mono">{progTrust.toFixed(0)}%</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-purple-400 ml-2">
+            <Brain className="w-3 h-3" />
+            <span className="text-[10px] font-bold font-mono">{progSense.toFixed(0)}</span>
           </div>
         </div>
 

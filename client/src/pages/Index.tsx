@@ -96,10 +96,10 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
     );
   }
 
-  const handleDecision = async (actionId: string) => {
+  const handleDecision = async (actionId: string, prediction?: Record<string, string>) => {
     if (!sessionId) return;
     try {
-      const newState = await api.makeDecision(sessionId, actionId);
+      const newState = await api.makeDecision(sessionId, actionId, prediction);
       setGameState(newState);
       await refreshData(sessionId);
       toast.success("Telemetric update received.");

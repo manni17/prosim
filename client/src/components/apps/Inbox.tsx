@@ -4,10 +4,11 @@ import { Inbox as InboxIcon, Send, Star, Trash2, Archive, Clock, Loader2 } from 
 import { clsx } from "clsx";
 import { InboxItem } from "@/services/api";
 import { toast } from "sonner";
+import { PredictionModal } from "../meta/PredictionModal";
 
 interface InboxProps {
   emails: InboxItem[];
-  onDecision: (actionId: string) => Promise<void>;
+  onDecision: (actionId: string, prediction?: Record<string, string>) => Promise<void>;
 }
 
 const folders = [
@@ -35,11 +36,23 @@ export const Inbox = ({ emails, onDecision }: InboxProps) => {
   const [activeFolder, setActiveFolder] = useState("inbox");
   const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showPredictionModal, setShowPredictionModal] = useState(false);
+  const [pendingAction, setPendingAction] = useState<{ id: string, label: string } | null>(null);
 
   const selectedEmail = emails.find(e => e.id === selectedEmailId);
 
-  const handleAction = async (actionId: string) => {
+  const handleAction = async (actionId: string, prediction?: Record<string, string>) => {
     if (isProcessing) return;
+
+    // Check if this option requires a prediction (WEB-24)
+    const option = selectedEmail?.options.find(o => o.action_id === actionId);
+    if (option?.requires_prediction && !prediction) {
+      setPendingAction({ id: actionId, label: option.label });
+      setShowPredictionModal(true);
+      return;
+    }
+
+    setShowPredictionModal(false);
     setIsProcessing(true);
     toast.info("Transmitting Orders...", { duration: 1500 });
 
@@ -47,16 +60,15 @@ export const Inbox = ({ emails, onDecision }: InboxProps) => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     try {
-      await onDecision(actionId);
+      await onDecision(actionId, prediction);
       toast.success("Orders Confirmed.");
-      // Auto-select next email if available, or clear selection
-      // This part is handled by parent refresh usually, but clearing here is safe
       setSelectedEmailId(null); 
     } catch (err) {
       console.error("Decision failed", err);
       toast.error("Transmission Failed.");
     } finally {
       setIsProcessing(false);
+      setPendingAction(null);
     }
   };
 
@@ -197,6 +209,14 @@ export const Inbox = ({ emails, onDecision }: InboxProps) => {
           </div>
         )}
       </div>
+
+      {showPredictionModal && pendingAction && (
+        <PredictionModal
+          actionLabel={pendingAction.label}
+          onConfirm={(pred) => handleAction(pendingAction.id, pred)}
+          onCancel={() => { setShowPredictionModal(false); setPendingAction(null); }}
+        />
+      )}
     </div>
   );
 };

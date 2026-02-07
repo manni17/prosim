@@ -21,6 +21,14 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [3.11.0] - 2026-02-06 (Thinking Fast and Slow)
+### Added
+- **Mechanic:** Implemented the "Prediction Loop" (Hypothesis Lock) for strategic decisions.
+- **UI:** Created `PredictionModal.tsx` to intercept high-stakes turns.
+- **Physics:** Added `product_sense_score` to track qualitative forecasting accuracy.
+- **TopBar:** Integrated Brain icon and real-time Product Sense telemetry.
+- **Feedback:** Contextual toast notifications for prediction accuracy and score gains.
+
 ## [3.10.0] - 2026-02-06 (The Churn Crisis)
 ### Added
 - **Campaign:** Implemented Level 2 Narrative Arc ("The Leaky Bucket").

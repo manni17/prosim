@@ -30,9 +30,9 @@
     "subject": "T-03: BOARD MEETING: Choose Our Strategy",
     "body": "The board demands a clear focus. Are we a volume play, a premium brand, or a product-led efficiency machine?",
     "options": [
-      { "label": "Project Floodgate (Volume)", "action_id": "floodgate", "impact_hint": "++Traffic, --AOV" },
-      { "label": "Project Velvet (Premium)", "action_id": "velvet", "impact_hint": "--Traffic, ++AOV" },
-      { "label": "Project Frictionless (Efficiency)", "action_id": "frictionless", "impact_hint": "++Conv Rates, -Traffic" }
+      { "label": "Project Floodgate (Volume)", "action_id": "floodgate", "impact_hint": "++Traffic, --AOV", "requires_prediction": true },
+      { "label": "Project Velvet (Premium)", "action_id": "velvet", "impact_hint": "--Traffic, ++AOV", "requires_prediction": true },
+      { "label": "Project Frictionless (Efficiency)", "action_id": "frictionless", "impact_hint": "++Conv Rates, -Traffic", "requires_prediction": true }
     ],
     "trigger": { "min_turn": 2, "max_turn": 3 }
   },

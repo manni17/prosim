@@ -48,6 +48,8 @@ class GameState(BaseModel):
     status: GameStatus = Field(default='ACTIVE', description="Current game status")
     termination_details: Dict[str, str] = Field(default_factory=dict, description="Reason and notes for game over")
     strategy_archetype: str = Field(default="default", description="Active strategic path")
+    product_sense_score: float = Field(default=0.0, description="Accuracy of strategic predictions")
+    last_prediction_results: Optional[Dict[str, Any]] = Field(default=None, description="Results of the most recent prediction")
     points: Dict[str, int] = Field(default_factory=dict, description="Score points")
     history: List[LogEntry] = Field(default_factory=list, description="Action history")
     events: List[Dict[str, Any]] = Field(default_factory=list, description="Raw event stream")

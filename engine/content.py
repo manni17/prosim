@@ -7,6 +7,7 @@ class ContentOption(BaseModel):
     label: str
     action_id: str
     impact_hint: str = "Unknown"
+    requires_prediction: bool = False
 
 class EventTrigger(BaseModel):
     min_turn: Optional[int] = 0

@@ -1,14 +1,14 @@
 {
   "health": 1.0,
   "morale": 0.75,
-  "trust": 0.39874946223886665,
-  "traffic": 10000,
-  "conversion_rate": 0.1102501075522267,
-  "average_order_value": 50.0,
-  "revenue": 74745.05377611335,
-  "active_users": 1962,
-  "churn_rate": 0.14018758066417,
-  "cart_rate": 0.25,
+  "trust": 0.5,
+  "traffic": 15000,
+  "conversion_rate": 0.13230012906267202,
+  "average_order_value": 65.0,
+  "revenue": 162692.6258361052,
+  "active_users": 3370,
+  "churn_rate": 0.125,
+  "cart_rate": 0.3,
   "checkout_rate": 0.5512505377611334,
   "payment_rate": 0.8,
   "phase": 1,
@@ -23,51 +23,40 @@
     "aov": 1.0,
     "conv": 1.0
   },
-  "status": "ACTIVE",
-  "termination_details": {},
-  "strategy_archetype": "default",
+  "status": "VICTORY",
+  "termination_details": {
+    "cause": "Mission Accomplished",
+    "notes": "The board is impressed with your aggressive growth strategy. IPO discussions have begun."
+  },
+  "strategy_archetype": "floodgate",
+  "product_sense_score": 20.0,
+  "last_prediction_results": {
+    "results": {
+      "revenue": "CORRECT",
+      "trust": "CORRECT"
+    },
+    "score_gain": 20,
+    "actual": {
+      "revenue": "increase",
+      "trust": "neutral"
+    }
+  },
   "points": {},
   "history": [
     {
-      "timestamp": "2026-02-06T12:00:00",
+      "timestamp": "2026-02-07T14:32:20.368783",
       "turn_index": 1,
       "phase": 1,
-      "action_id": "status_quo",
-      "metrics": {},
-      "health": 0.0,
-      "morale": 0.0,
-      "trust": 0.0,
-      "revenue": 0.0,
-      "active_users": 0,
-      "seed": 42
-    },
-    {
-      "timestamp": "2026-02-06T12:00:00",
-      "turn_index": 1,
-      "phase": 1,
-      "action_id": "status_quo",
-      "metrics": {},
-      "health": 0.0,
-      "morale": 0.0,
-      "trust": 0.0,
-      "revenue": 0.0,
-      "active_users": 0,
-      "seed": 42
-    },
-    {
-      "timestamp": "2026-02-07T14:21:02.446456",
-      "turn_index": 3,
-      "phase": 1,
-      "action_id": "band_aid_fix",
+      "action_id": "floodgate",
       "metrics": {
         "health_delta": 0.0,
-        "revenue": 74745.05377611335
+        "revenue": 162692.6258361052
       },
       "health": 1.0,
       "morale": 0.75,
-      "trust": 0.39874946223886665,
-      "revenue": 74745.05377611335,
-      "active_users": 1962,
+      "trust": 0.5,
+      "revenue": 162692.6258361052,
+      "active_users": 3370,
       "seed": 42
     }
   ],
@@ -86,6 +75,14 @@
       "properties": {
         "action_id": "band_aid_fix",
         "turn_index": 3
+      }
+    },
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-07T14:32:20.368674",
+      "properties": {
+        "action_id": "floodgate",
+        "turn_index": 1
       }
     }
   ],

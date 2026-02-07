@@ -107,6 +107,7 @@ class SimulationController:
             raise ValueError(f"Turn blocked: Status is {self.state.status}")
 
         backup_state = copy.deepcopy(self.state)
+        prediction = decision_data.get("prediction") # qualitative forecast
         
         try:
             action_id = decision_data.get("type")
@@ -117,6 +118,10 @@ class SimulationController:
                 self.state.strategy_archetype = action_id
             
             self.track("turn_start", {"action_id": action_id, "turn_index": len(self.state.history) + 1})
+
+            # Capture baseline for prediction verification
+            pre_revenue = self.state.revenue
+            pre_trust = self.state.trust
 
             mods = self.state.physics_modifiers
 
@@ -154,6 +159,39 @@ class SimulationController:
             
             self._calculate_churn()
             self._recalculate_revenue()
+            
+            # --- Prediction Verification (WEB-24) ---
+            if prediction:
+                results = {}
+                score_gain = 0
+                
+                # Check Revenue
+                rev_delta = self.state.revenue - pre_revenue
+                rev_dir = "increase" if rev_delta > 0 else "decrease" if rev_delta < 0 else "neutral"
+                if prediction.get("revenue") == rev_dir:
+                    score_gain += 10
+                    results["revenue"] = "CORRECT"
+                else:
+                    results["revenue"] = "INCORRECT"
+                
+                # Check Trust
+                trust_delta = self.state.trust - pre_trust
+                trust_dir = "increase" if trust_delta > 0.001 else "decrease" if trust_delta < -0.001 else "neutral"
+                if prediction.get("trust") == trust_dir:
+                    score_gain += 10
+                    results["trust"] = "CORRECT"
+                else:
+                    results["trust"] = "INCORRECT"
+                
+                self.state.product_sense_score += score_gain
+                self.state.last_prediction_results = {
+                    "results": results,
+                    "score_gain": score_gain,
+                    "actual": {"revenue": rev_dir, "trust": trust_dir}
+                }
+            else:
+                self.state.last_prediction_results = None
+
             self.logger.log_turn(action_id, {"health_delta": health_delta, "revenue": self.state.revenue})
 
             self._process_triggers()
