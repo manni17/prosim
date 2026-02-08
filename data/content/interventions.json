@@ -19,7 +19,7 @@
     "id": "freeze_features",
     "label": "Freeze Features",
     "category": "Product",
-    "description": "Stop all new feature development to focus on stability.",
+    "description": "Stop all new feature development to focus on stability and reduce [[tech_debt]].",
     "cost": { "trust": 0.1, "revenue": 2000.0 },
     "efficacy": { "tech_debt": 0.9, "memory_leak": 0.5 }
   },

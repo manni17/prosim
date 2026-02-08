@@ -55,17 +55,17 @@ export const TopBar = ({ gameState }: TopBarProps) => {
     >
       {/* Left - Logo */}
       <div className="flex items-center gap-2">
-        <span className="text-xs font-semibold text-[hsl(var(--text-inverse))] opacity-90">
+        <span className="text-[10px] font-black text-white/90 uppercase tracking-widest">
           Steller OS
         </span>
       </div>
 
       {/* Center - Time */}
       <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-3">
-        <span className="text-xs font-medium text-[hsl(var(--text-inverse))] opacity-90">
+        <span className="text-[10px] font-bold text-white/60 uppercase tracking-widest">
           {formattedDate}
         </span>
-        <span className="text-xs font-semibold text-[hsl(var(--text-inverse))]">
+        <span className="text-[10px] font-black text-white uppercase tracking-widest">
           {formattedTime}
         </span>
       </div>
@@ -74,31 +74,31 @@ export const TopBar = ({ gameState }: TopBarProps) => {
       <div className="flex items-center gap-4">
         {/* Metrics */}
         <div className="flex items-center gap-3 mr-2">
-          <div className="flex items-center gap-1.5 text-red-400">
-            <Heart className="w-3 h-3" />
-            <span className="text-[10px] font-bold font-mono">{progHealth.toFixed(0)}%</span>
+          <div className="flex items-center gap-1.5 text-rose-400">
+            <Heart className="w-3 h-3 fill-rose-400/20" />
+            <span className="text-[9px] font-black font-mono tracking-tighter">{progHealth.toFixed(0)}%</span>
           </div>
           <div className="flex items-center gap-1.5 text-blue-400">
-            <Zap className="w-3 h-3" />
-            <span className="text-[10px] font-bold font-mono">{progMorale.toFixed(0)}%</span>
+            <Zap className="w-3 h-3 fill-blue-400/20" />
+            <span className="text-[9px] font-black font-mono tracking-tighter">{progMorale.toFixed(0)}%</span>
           </div>
           <div className="flex items-center gap-1.5 text-emerald-400">
-            <Shield className="w-3 h-3" />
-            <span className="text-[10px] font-bold font-mono">{progTrust.toFixed(0)}%</span>
+            <Shield className="w-3 h-3 fill-emerald-400/20" />
+            <span className="text-[9px] font-black font-mono tracking-tighter">{progTrust.toFixed(0)}%</span>
           </div>
           <div className="flex items-center gap-1.5 text-purple-400 ml-2">
-            <Brain className="w-3 h-3" />
-            <span className="text-[10px] font-bold font-mono">{progSense.toFixed(0)}</span>
+            <Brain className="w-3 h-3 fill-purple-400/20" />
+            <span className="text-[9px] font-black font-mono tracking-tighter">{progSense.toFixed(0)}</span>
           </div>
         </div>
 
-        <div className="h-3 w-px bg-[hsl(var(--text-inverse))] opacity-20" />
+        <div className="h-3 w-px bg-white/10" />
 
-        <Volume2 className="w-3.5 h-3.5 text-[hsl(var(--text-inverse))] opacity-80" />
-        <Wifi className="w-3.5 h-3.5 text-[hsl(var(--text-inverse))] opacity-80" />
+        <Volume2 className="w-3.5 h-3.5 text-white/60" />
+        <Wifi className="w-3.5 h-3.5 text-white/60" />
         <div className="flex items-center gap-1">
-          <Battery className="w-4 h-4 text-[hsl(var(--text-inverse))] opacity-80" />
-          <span className="text-[10px] font-medium text-[hsl(var(--text-inverse))] opacity-80">
+          <Battery className="w-4 h-4 text-white/60" />
+          <span className="text-[9px] font-black text-white/60">
             100%
           </span>
         </div>

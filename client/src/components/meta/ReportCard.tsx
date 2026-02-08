@@ -1,22 +1,25 @@
 import { motion } from "framer-motion";
 import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
-import { RefreshCw, FileWarning, CheckCircle2, Download } from "lucide-react";
+import { RefreshCw, FileWarning, CheckCircle2, Download, BarChart2 } from "lucide-react";
 import { GameState } from "@/services/api";
 import { useRef, useState } from "react";
 import html2canvas from "html2canvas";
 import { toast } from "sonner";
+import { CompetencyScorecard } from "./CompetencyScorecard";
 
 interface ReportCardProps {
   gameState: GameState;
+  sessionId: string;
   onRetry: () => void;
 }
 
-export const ReportCard = ({ gameState, onRetry }: ReportCardProps) => {
+export const ReportCard = ({ gameState, sessionId, onRetry }: ReportCardProps) => {
   const isVictory = gameState.status === 'VICTORY' || gameState.status === 'WON';
   const cause = gameState.termination_details?.cause || "Unknown Error";
   const notes = gameState.termination_details?.notes || "No additional details provided by HR.";
   const cardRef = useRef<HTMLDivElement>(null);
   const [isExporting, setIsExporting] = useState(false);
+  const [showAssessment, setShowAssessment] = useState(false);
   
   const calculateGrade = (val: number) => {
     if (val > 0.8) return 'A';
@@ -141,6 +144,14 @@ export const ReportCard = ({ gameState, onRetry }: ReportCardProps) => {
                 </button>
 
                 <button
+                  onClick={() => setShowAssessment(true)}
+                  className="w-full py-3 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-xl font-bold text-xs tracking-widest uppercase hover:bg-blue-500/20 transition-all flex items-center justify-center gap-2 group"
+                >
+                  <BarChart2 className="w-3 h-3" />
+                  Behavioral Assessment
+                </button>
+
+                <button
                   onClick={handleExport}
                   disabled={isExporting}
                   className="w-full py-3 bg-slate-800/50 text-slate-300 rounded-xl font-bold text-xs tracking-widest uppercase hover:bg-slate-800 hover:text-white transition-all border border-transparent hover:border-slate-600 flex items-center justify-center gap-2"
@@ -159,6 +170,14 @@ export const ReportCard = ({ gameState, onRetry }: ReportCardProps) => {
           </div>
         </div>
       </motion.div>
+
+      {showAssessment && (
+        <CompetencyScorecard 
+          gameState={gameState} 
+          sessionId={sessionId} 
+          onClose={() => setShowAssessment(false)} 
+        />
+      )}
     </div>
   );
 };

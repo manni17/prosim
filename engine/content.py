@@ -39,6 +39,7 @@ class ContentManager:
         self.emails: List[NarrativeContent] = []
         self.chats: List[NarrativeContent] = []
         self.interventions: List[Intervention] = []
+        self.wiki: Dict[str, Any] = {}
         self._load_content()
 
     def _load_content(self):
@@ -46,6 +47,11 @@ class ContentManager:
         self.emails = self._load_file(f"data/content/emails{suffix}.json")
         self.chats = self._load_file(f"data/content/chats{suffix}.json")
         self.interventions = self._load_interventions_file("data/content/interventions.json")
+        
+        wiki_path = Path("data/content/wiki.json")
+        if wiki_path.exists():
+            with open(wiki_path, 'r', encoding='utf-8') as f:
+                self.wiki = json.load(f)
 
     def _load_file(self, filepath: str) -> List[NarrativeContent]:
         path = Path(filepath)

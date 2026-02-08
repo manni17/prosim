@@ -181,6 +181,15 @@ class SimulationController:
             self._calculate_churn()
             self._recalculate_revenue()
             
+            # --- FLOODGATE TRAP LOGIC (Lead Systems Architect Fix) ---
+            if self.state.strategy_archetype == 'floodgate' and "fix_kyc" not in self.state.active_upgrades:
+                # Narrative: High Traffic, Broken Funnel
+                self.state.conversion_rate = 0.004  # 0.4%
+                # Recalculate revenue based on the trap
+                self.state.revenue = self.state.traffic * self.state.conversion_rate * self.state.average_order_value
+                # Log the trap for debugging
+                print(f"[TRAP] Floodgate Active: Traffic {self.state.traffic} -> Revenue {self.state.revenue}")
+
             # --- Prediction Verification (WEB-24) ---
             if prediction:
                 results = {}
@@ -217,6 +226,15 @@ class SimulationController:
                 
                 accuracy_pct = (match_count / total_metrics) * 100
                 score_gain = match_count * 10
+                
+                # Dynamic Feedback Message (UX-08)
+                feedback_msg = "Your prediction was mostly accurate. The system behavior matched your mental model."
+                if accuracy_pct < 50:
+                    feedback_msg = "Significant variance detected. The system behavior diverged from your expectations."
+                
+                if self.state.strategy_archetype == 'floodgate' and "fix_kyc" not in self.state.active_upgrades:
+                    feedback_msg = "Traffic surged, but the broken KYC process caused 98% churn. Revenue did not follow traffic."
+
                 if accuracy_pct >= 80:
                     self.state.revenue += 5000 # Bonus revenue for high product sense
                 
@@ -225,7 +243,8 @@ class SimulationController:
                 self.state.last_prediction_results = {
                     "results": results,
                     "score_gain": score_gain,
-                    "accuracy": accuracy_pct
+                    "accuracy": accuracy_pct,
+                    "message": feedback_msg
                 }
                 
                 # Formal event tracking (WEB-24 spec)

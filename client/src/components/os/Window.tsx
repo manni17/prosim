@@ -14,9 +14,9 @@ export const Window = ({ title, children, variant = "default", isVisible }: Wind
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
-          initial={{ scale: 0.85, opacity: 0, y: 40 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.9, opacity: 0, y: 20 }}
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 50, opacity: 0 }}
           transition={{
             type: "spring",
             stiffness: 300,

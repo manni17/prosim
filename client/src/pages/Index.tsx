@@ -16,6 +16,7 @@ import { TutorialOverlay } from "@/components/meta/TutorialOverlay";
 import { StartScreen } from "@/components/meta/StartScreen";
 import api, { GameState, InboxItem, AnalyticsData, Intervention } from "@/services/api";
 import { toast } from "sonner";
+import { telemetry } from "@/services/telemetry";
 
 interface IndexProps {
   gameStatus: "IDLE" | "ACTIVE" | "REVIEW" | "GAME_OVER";
@@ -30,23 +31,47 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
   const [chats, setChats] = useState<InboxItem[]>([]);
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [interventions, setInterventions] = useState<Intervention[]>([]);
+  const [wiki, setWiki] = useState<Record<string, any>>({});
   const [activeApp, setActiveApp] = useState("inbox");
   const [loading, setLoading] = useState(!initialData);
 
+  useEffect(() => {
+    if (sessionId && gameState) {
+      telemetry.logEvent({
+        sessionId,
+        type: 'TAB_SWITCH',
+        turn: gameState.history.length,
+        metadata: { 
+          app: activeApp,
+          context: activeApp === 'maxpanel' && inbox.length > 0 ? 'PANIC_CHECK' : 'NAVIGATION'
+        }
+      }).catch(console.error);
+    }
+  }, [activeApp, sessionId, gameState?.history.length]);
+
   const refreshData = async (sid: string) => {
     try {
-      const [state, inboxData, chatsData, analyticsData, interventionsData] = await Promise.all([
+      // 1. Fetch wiki first or in parallel with fallback
+      const wikiPromise = api.getWiki(sid).catch(err => {
+        console.warn("Wiki hydration failed, falling back to empty knowledge graph:", err);
+        return {};
+      });
+
+      const [state, inboxData, chatsData, analyticsData, interventionsData, wikiData] = await Promise.all([
         api.getState(sid),
         api.getInbox(sid),
         api.getChats(sid),
         api.getAnalytics(sid),
-        api.getInterventions(sid)
+        api.getInterventions(sid),
+        wikiPromise
       ]);
+      
       setGameState(state);
       setInbox(inboxData);
       setChats(chatsData);
       setAnalytics(analyticsData);
       setInterventions(interventionsData);
+      setWiki(wikiData);
 
       // Sync status with backend
       if (state.status === 'REVIEW' && gameStatus !== 'REVIEW') {
@@ -78,6 +103,13 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
       setSessionId(data.session_id);
       setGameState(data.state);
       setGameStatus('ACTIVE');
+
+      telemetry.logEvent({
+        sessionId: data.session_id,
+        type: 'APP_OPEN',
+        turn: 0,
+        metadata: { player: data.state.player_name }
+      }).catch(console.error);
     } catch (error) {
       console.error("CRITICAL FAILURE:", error);
       alert("Failed to connect to Simulation Engine (Port 8000). Is the backend running?");
@@ -97,15 +129,17 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
   }
 
   const handleDecision = async (actionId: string, prediction?: Record<string, any>) => {
-    if (!sessionId) return;
+    if (!sessionId) return null;
     try {
       const newState = await api.makeDecision(sessionId, actionId, prediction);
       setGameState(newState);
-      await refreshData(sessionId);
-      toast.success("Telemetric update received.");
+      // We don't refreshData immediately if there is a prediction, 
+      // but returning newState allows the Inbox to handle the Result Modal.
+      return newState;
     } catch (err) {
       console.error("Decision failed:", err);
       toast.error("Packet loss detected.");
+      throw err;
     }
   };
 
@@ -167,15 +201,22 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
   const apps: Record<string, { title: string; component: React.ReactNode }> = {
     maxpanel: { 
       title: "MaxPanel 3.0 — Analytics", 
-      component: <MaxPanel gameState={gameState} analytics={analytics} sessionId={sessionId || ""} /> 
+      component: <MaxPanel gameState={gameState} analytics={analytics} sessionId={sessionId || ""} wiki={wiki} /> 
     },
     inbox: { 
       title: "Inbox", 
-      component: <Inbox emails={inbox} onDecision={handleDecision} /> 
+      component: <Inbox 
+        emails={inbox} 
+        onDecision={handleDecision} 
+        onRefresh={() => refreshData(sessionId!)} 
+        wiki={wiki} 
+        sessionId={sessionId || ""} 
+        turn={gameState.history.length}
+      /> 
     },
     warroom: { 
       title: "Strategic War Room", 
-      component: <WarRoom interventions={interventions} onIntervention={handleIntervention} /> 
+      component: <WarRoom interventions={interventions} onIntervention={handleIntervention} wiki={wiki} /> 
     },
     chat: { 
       title: "Team Chat", 
@@ -218,7 +259,7 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
         )}
 
         {gameStatus === "GAME_OVER" && gameState && (
-          <ReportCard gameState={gameState} onRetry={handleRetry} />
+          <ReportCard gameState={gameState} sessionId={sessionId || ""} onRetry={handleRetry} />
         )}
       </main>
 

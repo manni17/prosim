@@ -4,7 +4,7 @@
     "type": "system",
     "sender": "CEO",
     "subject": "Q2 Kickoff: The Leaky Bucket",
-    "body": "Welcome to Quarter 2. Our acquisition numbers in Q1 were legendary, but the data shows a worrying trend: users are leaving. This quarter, our North Star is Retention. If we don't fix the churn, the growth is meaningless.",
+    "body": "Welcome to Quarter 2. Our acquisition numbers in Q1 were legendary, but the data shows a worrying trend: users are leaving. This quarter, our North Star is Retention. If we don't fix the [[churn]], the growth is meaningless.",
     "options": [
       { "label": "Understood", "action_id": "status_quo", "impact_hint": "Focus: Retention" }
     ],
@@ -29,8 +29,8 @@
     "subject": "The Support Inbox is Exploding",
     "body": "Tickets are up 400%. The team is burning out and users are threatening to cancel their subscriptions en masse. We need to do something radical to signal we care about stability.",
     "options": [
-      { "label": "Declare Feature Freeze", "action_id": "freeze_everything", "impact_hint": "---Revenue, +++Trust" },
-      { "label": "Hire more Support", "action_id": "outsource_yes", "impact_hint": "-Revenue, +Morale" }
+      { "label": "Declare Feature Freeze", "action_id": "freeze_everything", "impact_hint": "---[[revenue]], +++Trust" },
+      { "label": "Hire more Support", "action_id": "outsource_yes", "impact_hint": "-[[revenue]], +Morale" }
     ],
     "trigger": { "min_turn": 5, "max_turn": 6 }
   }

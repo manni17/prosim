@@ -1,13 +1,18 @@
-# Task Backlog (V1.1 Expansion)
+# Task Backlog (Behavioral Oracle v4.0)
 
 | ID | Task | Status | Spec Link |
 |:---|:---|:---|:---|
-| DATA-11 | Level 2 Content Expansion (12-Turn Arc) | COMPLETED | docs/specs/DATA-11.md |
-| SYS-11 | Retention & Churn Engine Logic | COMPLETED | docs/specs/SYS-11.md |
-| WEB-24 | Prediction Modal (Hypothesis Lock) | COMPLETED | docs/specs/WEB-24.md |
-| SYS-12 | Narrative Override Engine | COMPLETED | docs/specs/SYS-12.md |
-| WEB-25 | Wiki Knowledge Link Integration | PENDING | docs/specs/WEB-25.md |
-| UX-06 | Progressive Feature Unlock (Tabs) | PENDING | docs/specs/UX-06.md |
+| **DATA-01** | Behavioral Telemetry (IndexedDB) | COMPLETED | `docs/specs/DATA-01.md` |
+| **BUS-01** | Competency Scorecard Logic | **COMPLETED** | `docs/specs/BUS-01.md` |
+| **ARCH-02** | Infrastructure Hardening (No localStorage) | **TODO** | `docs/adr/ADR-02.md` |
+| DATA-11 | Level 2 Content Expansion | COMPLETED | docs/specs/DATA-11.md |
+| SYS-11 | Retention Engine | COMPLETED | docs/specs/SYS-11.md |
+| WEB-24 | Prediction Modal | COMPLETED | docs/specs/WEB-24.md |
+| SYS-12 | Narrative Overrides | COMPLETED | docs/specs/SYS-12.md |
+| WEB-25 | Wiki Knowledge Engine | COMPLETED | docs/specs/WEB-25.md |
+| UX-08 | Prediction Feedback Loop | COMPLETED | docs/specs/UX-08.md |
+| WEB-15 | UI Transplant | COMPLETED | docs/specs/WEB-15.md |
+| UX-06 | Progressive Tab Unlock | COMPLETED | docs/specs/UX-06.md |
 
 ## Archived Tasks
-See [docs/ARCHIVE.md](ARCHIVE.md) for full project history (Phases 1-7).
+See [docs/ARCHIVE.md](ARCHIVE.md) for full project history.

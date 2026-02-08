@@ -141,6 +141,18 @@ const api = {
     }
   },
 
+  getWiki: async (sessionId: string): Promise<Record<string, any>> => {
+    try {
+      const response = await axios.get(`${BASE_URL}/wiki`, {
+        headers: { 'X-Session-ID': sessionId }
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error getting wiki:", error);
+      throw error;
+    }
+  },
+
   executeIntervention: async (sessionId: string, actionId: string) => {
     try {
       const response = await axios.post(`${BASE_URL}/intervention`, 

@@ -28,7 +28,7 @@ export const Dock = ({ activeApp, onAppChange }: DockProps) => {
       }}
       className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50"
     >
-      <div className="glass-dock rounded-full px-2 py-2 flex items-center gap-1">
+      <div className="glass-dock rounded-3xl px-3 py-3 flex items-center gap-2 border border-white/10 shadow-2xl">
         {dockItems.map((item) => (
           <DockIcon
             key={item.id}
@@ -60,47 +60,40 @@ const DockIcon = ({ item, isActive, onClick }: DockIconProps) => {
       onClick={onClick}
       className="relative flex flex-col items-center group"
       whileHover={{ scale: 1.2, y: -8 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.9 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       {/* Tooltip */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileHover={{ opacity: 1, y: 0 }}
-        className="absolute -top-10 px-2.5 py-1 rounded-md bg-[hsl(var(--text-primary))] text-[hsl(var(--text-inverse))] text-xs font-medium whitespace-nowrap pointer-events-none z-[100]"
-      >
+      <div className="absolute -top-12 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl">
         {item.label}
-      </motion.div>
+      </div>
 
       {/* Icon Container */}
       <div
         className={clsx(
-          "w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200",
+          "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 border",
           isActive
-            ? "bg-[hsl(var(--glass-hover))] shadow-lg"
-            : "bg-[hsl(var(--glass-card))] hover:bg-[hsl(var(--glass-hover))]"
+            ? "bg-primary/20 border-primary/40 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+            : "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10"
         )}
       >
         <Icon
           className={clsx(
             "w-5 h-5 transition-colors",
             isActive
-              ? "text-[hsl(var(--primary))]"
-              : "text-[hsl(var(--text-primary))]"
+              ? "text-primary fill-primary/10"
+              : "text-slate-400 group-hover:text-white"
           )}
         />
       </div>
 
       {/* Active Indicator */}
-      <motion.div
-        initial={false}
-        animate={{
-          scale: isActive ? 1 : 0,
-          opacity: isActive ? 1 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-        className="absolute -bottom-1.5 w-1 h-1 rounded-full bg-[hsl(var(--text-primary))]"
-      />
+      {isActive && (
+        <motion.div
+          layoutId="dock-active"
+          className="absolute -bottom-2 w-1 h-1 rounded-full bg-primary shadow-[0_0_10px_#3b82f6]"
+        />
+      )}
     </motion.button>
   );
 };

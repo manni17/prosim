@@ -171,6 +171,11 @@ def get_interventions(controller: SimulationController = Depends(get_controller)
     """Returns the list of tactical interventions."""
     return controller.content_manager.interventions
 
+@app.get("/wiki")
+def get_wiki(controller: SimulationController = Depends(get_controller)):
+    """Returns the dictionary of wiki definitions."""
+    return controller.content_manager.wiki
+
 class InterventionRequest(BaseModel):
     action_id: str
 

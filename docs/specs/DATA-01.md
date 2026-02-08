@@ -1,16 +1,37 @@
-# DATA-01: Scenario Hydration
+# DATA-01: Behavioral Telemetry Layer (IndexedDB)
 
 ## Requirements
-- **Goal:** Implement data-driven game logic to replace hard-coded actions.
-- **Components:**
-  - `engine/hydrator.py`: Responsible for loading and parsing scenario files.
-  - `engine/controller.py`: Must be refactored to use hydrated data for turn execution.
-  - `main.py`: Must dynamically display available actions based on the loaded scenario.
-- **Data Source:** `data/scenarios/phase_{n}.json` where `{n}` is the current game phase.
-- **Logic:**
-  - Upon initialization or phase change, the system loads the corresponding scenario JSON.
-  - Turn logic ("work", "rest", etc.) is no longer hard-coded in Python. It is defined in the JSON under an "actions" key.
-  - Each action defines its costs (health) and rewards (points) as ranges (min/max) for the RNG.
-- **DoD:**
-  - `main.py` dynamically lists actions from `phase_1.json`.
-  - Executing an action applies the math defined in the JSON.
+- **Goal:** Capture high-fidelity behavioral data to profile user competence (Conviction, Consistency, Resilience).
+- **Storage:** Use Browser **IndexedDB** instead of `localStorage` to handle high-frequency events without blocking the main thread.
+- **Database Schema:**
+  - **DB Name:** `prosim_telemetry_v1`
+  - **Store:** `events`
+  - **Fields:**
+    - `id` (Auto-increment)
+    - `sessionId` (String)
+    - `type` (String: 'DECISION_START', 'DECISION_COMMIT', 'TAB_SWITCH', 'HOVER_ACTION')
+    - `timestamp` (Int64)
+    - `turn` (Int)
+    - `metadata` (JSON: { actionId, duration, prevValue })
+
+## Core Mechanics
+1. **Decision Timer:** 
+   - Log `DECISION_START` when an email is selected.
+   - Log `DECISION_COMMIT` when an option is confirmed.
+   - Track `duration_ms` in `DECISION_COMMIT` metadata.
+2. **Hesitation Tracking:**
+   - Log `HOVER_ACTION` to track total hovers per turn.
+   - Calculate `hover_diversity` (unique options viewed).
+   - Detect `is_reversal` (changing mind after hovering over another option).
+3. **Panic Check Detection:**
+   - Tag `TAB_SWITCH` events as `PANIC_CHECK` if they occur while a decision is pending.
+
+## Implementation Plan
+1. Create `client/src/services/telemetry.ts` using the native `IDB` API.
+2. Integrate a `TelemetryProvider` in `App.tsx`.
+3. Hook into `Inbox.tsx` and `Dock.tsx` to fire events.
+
+## DoD
+- Database initializes on app load.
+- Clicking an email generates a `DECISION_START` entry in IndexedDB.
+- Executing an action generates a `DECISION_COMMIT` entry with a valid `sessionId`.

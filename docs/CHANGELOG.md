@@ -21,6 +21,57 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [4.1.0] - 2026-02-08 (The Behavioral Scorecard)
+### Added
+- **Assessment:** Implemented the Competency Assessment Engine (BUS-01) to profile PM behavior.
+- **Engine:** Created `AssessmentEngine.ts` to analyze telemetry across four pillars (Conviction, Consistency, Durability, Trade-offs).
+- **UI:** Developed `CompetencyScorecard.tsx` high-fidelity overlay for post-game assessment.
+- **Integration:** Hooked the assessment flow into the `ReportCard` component with a new "Behavioral Assessment" entry point.
+
+## [4.0.0] - 2026-02-08 (The Behavioral Oracle)
+### Added
+- **Telemetry:** Implemented the Behavioral Telemetry Layer (DATA-01) using IndexedDB.
+- **Data:** Created `telemetry.ts` service for high-fidelity event logging (Schema: `prosim_telemetry_v1`).
+- **Tracking:** Added event hooks for `DECISION_START`, `DECISION_COMMIT`, `TAB_SWITCH`, `APP_OPEN`, and `HOVER_ACTION`.
+- **Infrastructure:** Merged high-fidelity governance updates into PRD, Roadmap, and Backlog.
+
+## [3.17.0] - 2026-02-07 (Earning the Tools)
+### Added
+- **UX:** Implemented Progressive Tab Unlock (UX-06) in MaxPanel.
+- **UI:** Added Padlock icons and desaturated states for locked advanced analytics (Funnels, Retention).
+- **Feedback:** Integrated `sonner` toast notifications to explain level requirements for locked features.
+- **Logic:** Tied tab availability directly to `gameState.current_level`.
+
+## [3.16.0] - 2026-02-06 (The High-Fidelity Transplant)
+### Changed
+- **Frontend:** Completed the WEB-15 "Surgical Transplant" of simulation logic into the new `stellar-glass-desk` shell.
+- **UI:** Migrated to a high-fidelity "Dark Ethereal Glass" design system.
+- **MaxPanel:** Rebuilt the dashboard using a 4-tab structure (Overview, Insights, Funnels, Retention).
+- **Inbox:** Ported the split-pane email detail view into the new glass layout.
+- **WarRoom:** Redesigned tactical interventions using the new high-fidelity grid system.
+- **Build:** Successfully migrated build pipeline to support the new UI architecture.
+
+## [3.15.0] - 2026-02-06 (The Reality Check)
+### Added
+- **UX:** Implemented the Prediction Feedback Loop (UX-08).
+- **UI:** Created `PredictionResultModal.tsx` for immediate strategic post-mortems.
+- **Backend:** Added dynamic qualitative feedback messages to prediction evaluations.
+- **Content:** Specialized feedback for the Floodgate strategy to explain the KYC bottleneck.
+
+## [3.14.0] - 2026-02-06 (The Embedded Textbook)
+### Added
+- **Pedagogy:** Implemented the Wiki Knowledge Engine (WEB-25) for contextual PM training.
+- **Content:** Created `data/content/wiki.json` with 8 core term definitions and trade-offs.
+- **UI:** Added `WikiTooltip.tsx` using Radix HoverCard for high-fidelity interactive keywords.
+- **Parser:** Developed `textParser.tsx` utility to dynamically inject wiki links into any narrative text.
+- **API:** Added `GET /wiki` endpoint to serve knowledge graph data.
+
+## [3.13.0] - 2026-02-06 (The Syllabus)
+### Added
+- **Governance:** Created `docs/CURRICULUM.md` mapping all game events to learning objectives.
+- **Audit:** Identified gaps in "Just-in-Time Knowledge" and "Adaptive Friction" implementations.
+- **Strategy:** Defined Level 3 (Scale) pedagogical pillars.
+
 ## [3.12.0] - 2026-02-06 (Story Beats Math)
 ### Added
 - **Engine:** Implemented the Narrative Physics Override system (SYS-12).

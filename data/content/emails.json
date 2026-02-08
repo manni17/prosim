@@ -4,7 +4,7 @@
     "type": "crisis",
     "sender": "UX Lead",
     "subject": "T-01: Checkout Drop-off is 60%!",
-    "body": "User testing shows customers are dropping off because we force them to create an account. Removing this wall could boost conversion instantly.",
+    "body": "User testing shows customers are dropping off because we force them to create an account. Removing this wall could boost [[conversion]] instantly.",
     "options": [
       { "label": "Enable Guest Checkout", "action_id": "guest_checkout", "impact_hint": "+Checkout Rate, -Trust" },
       { "label": "Keep Forced Login", "action_id": "forced_login", "impact_hint": "-Checkout Rate, +LTV" }
@@ -16,7 +16,7 @@
     "type": "growth",
     "sender": "CTO",
     "subject": "T-02: Failed Transactions",
-    "body": "Mobile checkouts are failing. Adding Express Payments (Apple Pay/PayPal) would smooth out the final step.",
+    "body": "Mobile checkouts are failing. Adding Express Payments (Apple Pay/PayPal) would smooth out the final step, but might increase [[tech_debt]].",
     "options": [
       { "label": "Add Express Payments", "action_id": "express_pay", "impact_hint": "+Payment Rate, +Tech Debt" },
       { "label": "Status Quo", "action_id": "status_quo", "impact_hint": "No Change" }
@@ -30,9 +30,9 @@
     "subject": "T-03: BOARD MEETING: Choose Our Strategy",
     "body": "The board demands a clear focus. Are we a volume play, a premium brand, or a product-led efficiency machine?",
     "options": [
-      { "label": "Project Floodgate (Volume)", "action_id": "floodgate", "impact_hint": "++Traffic, --AOV", "requires_prediction": true },
-      { "label": "Project Velvet (Premium)", "action_id": "velvet", "impact_hint": "--Traffic, ++AOV", "requires_prediction": true },
-      { "label": "Project Frictionless (Efficiency)", "action_id": "frictionless", "impact_hint": "++Conv Rates, -Traffic", "requires_prediction": true }
+      { "label": "Project Floodgate (Volume)", "action_id": "floodgate", "impact_hint": "++[[traffic]], --[[aov]]", "requires_prediction": true },
+      { "label": "Project Velvet (Premium)", "action_id": "velvet", "impact_hint": "--[[traffic]], ++[[aov]]", "requires_prediction": true },
+      { "label": "Project Frictionless (Efficiency)", "action_id": "frictionless", "impact_hint": "++Conv Rates, -[[traffic]]", "requires_prediction": true }
     ],
     "trigger": { "min_turn": 2, "max_turn": 3 }
   },

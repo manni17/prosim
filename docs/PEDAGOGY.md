@@ -60,3 +60,22 @@ Product Sense (Cognitive)
 Report Card Grade
 
 Synthesis (Holistic)
+
+## 3. The Competency Scorecard (Measurement)
+
+We do not grade on "Did you win?" We grade on "How did you think?"
+
+### A. Conviction Score (Confidence)
+* **Signal:** `Time_to_Decide` + `Revisited_Decision_Count`.
+* **Logic:** Fast decisions with low hovering = High Conviction.
+* **Pedagogy:** Leaders must act with incomplete information.
+
+### B. Strategic Consistency (Focus)
+* **Signal:** `Metadata.Is_Reversal` + `Alignment_Score`.
+* **Logic:** If a user chooses "Project Floodgate" (Growth) but then cuts the Marketing Budget, Consistency drops.
+* **Pedagogy:** Strategy is the refusal to do things that don't fit the goal.
+
+### C. Cognitive Durability (Resilience)
+* **Signal:** `Performance_Delta` after a "Crisis Event" (e.g., Server Outage).
+* **Logic:** Does the user's error rate increase immediately after a negative narrative trigger?
+* **Pedagogy:** Measuring grace under pressure.

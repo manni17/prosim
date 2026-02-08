@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 
 interface PredictionModalProps {
   actionLabel: string;
-  onConfirm: (prediction: Record<string, number>) => void;
+  onConfirm: (prediction: Record<string, any>) => void;
   onCancel: () => void;
 }
 
