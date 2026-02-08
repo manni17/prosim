@@ -21,6 +21,12 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [4.2.0] - 2026-02-08 (The Assessment Artifact)
+### Added
+- **UI:** Implemented the high-fidelity `CompetencyScorecard.tsx` (WEB-26) for post-game behavioral analysis.
+- **Features:** Integrated PDF export functionality using native browser print capabilities with custom `print:` styles.
+- **Integration:** Wired the Scorecard as a primary end-game overlay in `Index.tsx`.
+
 ## [4.1.0] - 2026-02-08 (The Behavioral Scorecard)
 ### Added
 - **Assessment:** Implemented the Competency Assessment Engine (BUS-01) to profile PM behavior.

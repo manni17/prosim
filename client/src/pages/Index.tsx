@@ -14,6 +14,7 @@ import { ReportCard } from "@/components/meta/ReportCard";
 import { QuarterlyReview } from "@/components/meta/QuarterlyReview";
 import { TutorialOverlay } from "@/components/meta/TutorialOverlay";
 import { StartScreen } from "@/components/meta/StartScreen";
+import { CompetencyScorecard } from "@/components/reports/CompetencyScorecard";
 import api, { GameState, InboxItem, AnalyticsData, Intervention } from "@/services/api";
 import { toast } from "sonner";
 import { telemetry } from "@/services/telemetry";
@@ -259,7 +260,13 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
         )}
 
         {gameStatus === "GAME_OVER" && gameState && (
-          <ReportCard gameState={gameState} sessionId={sessionId || ""} onRetry={handleRetry} />
+          <>
+            <ReportCard gameState={gameState} sessionId={sessionId || ""} onRetry={handleRetry} />
+            <CompetencyScorecard 
+              simulationId={sessionId || "unknown"} 
+              onClose={() => window.location.reload()} 
+            />
+          </>
         )}
       </main>
 

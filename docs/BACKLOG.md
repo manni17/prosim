@@ -4,6 +4,7 @@
 |:---|:---|:---|:---|
 | **DATA-01** | Behavioral Telemetry (IndexedDB) | COMPLETED | `docs/specs/DATA-01.md` |
 | **BUS-01** | Competency Scorecard Logic | **COMPLETED** | `docs/specs/BUS-01.md` |
+| **WEB-26** | Competency Scorecard UI | **COMPLETED** | `client/src/components/reports/CompetencyScorecard.tsx` |
 | **ARCH-02** | Infrastructure Hardening (No localStorage) | **TODO** | `docs/adr/ADR-02.md` |
 | DATA-11 | Level 2 Content Expansion | COMPLETED | docs/specs/DATA-11.md |
 | SYS-11 | Retention Engine | COMPLETED | docs/specs/SYS-11.md |
