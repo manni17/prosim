@@ -1,13 +1,13 @@
 {
-  "health": 1.0,
-  "morale": 0.7362485340815441,
-  "trust": 0.4180286600771058,
-  "traffic": 10000,
+  "health": 0.8,
+  "morale": 0.5862485340815441,
+  "trust": 0.5180286600771058,
+  "traffic": 100000,
   "conversion_rate": 0.1255694339892375,
   "average_order_value": 50.0,
-  "revenue": 82984.71699461875,
-  "active_users": 2020,
-  "churn_rate": 0.13729570098843413,
+  "revenue": 631847.1699461875,
+  "active_users": 400,
+  "churn_rate": 0.13229570098843413,
   "cart_rate": 0.25,
   "checkout_rate": 0.5512505377611334,
   "payment_rate": 0.9111605369074411,
@@ -23,9 +23,13 @@
     "aov": 1.0,
     "conv": 1.0
   },
-  "status": "ACTIVE",
-  "termination_details": {},
-  "strategy_archetype": "default",
+  "physics_overrides": {},
+  "status": "VICTORY",
+  "termination_details": {
+    "cause": "Mission Accomplished",
+    "notes": "The board is impressed with your aggressive growth strategy. IPO discussions have begun."
+  },
+  "strategy_archetype": "floodgate",
   "product_sense_score": 0.0,
   "last_prediction_accuracy": 0.0,
   "last_prediction_results": null,
@@ -33,81 +37,81 @@
   "historical_data": [
     {
       "month": "Jan",
-      "revenue": 8500,
-      "traffic": 8000,
-      "active_users": 850
+      "revenue": 12000,
+      "traffic": 10000,
+      "active_users": 1200
     },
     {
       "month": "Feb",
-      "revenue": 8700,
-      "traffic": 8200,
-      "active_users": 870
+      "revenue": 12100,
+      "traffic": 12000,
+      "active_users": 1210
     },
     {
       "month": "Mar",
-      "revenue": 8200,
-      "traffic": 7500,
-      "active_users": 820
+      "revenue": 12200,
+      "traffic": 15000,
+      "active_users": 1220
     },
     {
       "month": "Apr",
-      "revenue": 9000,
-      "traffic": 9200,
-      "active_users": 900
+      "revenue": 12100,
+      "traffic": 25000,
+      "active_users": 1210
     },
     {
       "month": "May",
-      "revenue": 9500,
-      "traffic": 9800,
-      "active_users": 950
+      "revenue": 12300,
+      "traffic": 35000,
+      "active_users": 1230
     },
     {
       "month": "Jun",
-      "revenue": 10000,
-      "traffic": 10000,
-      "active_users": 1000
+      "revenue": 12200,
+      "traffic": 45000,
+      "active_users": 1220
     },
     {
       "month": "Jul",
-      "revenue": 10200,
-      "traffic": 10500,
-      "active_users": 1020
+      "revenue": 12400,
+      "traffic": 50000,
+      "active_users": 1240
     },
     {
       "month": "Aug",
-      "revenue": 9800,
-      "traffic": 10200,
-      "active_users": 980
+      "revenue": 12300,
+      "traffic": 52000,
+      "active_users": 1230
     },
     {
       "month": "Sep",
-      "revenue": 10500,
-      "traffic": 11000,
-      "active_users": 1050
+      "revenue": 12500,
+      "traffic": 52400,
+      "active_users": 1250
     },
     {
       "month": "Oct",
-      "revenue": 11000,
-      "traffic": 11500,
-      "active_users": 1100
+      "revenue": 12400,
+      "traffic": 52400,
+      "active_users": 1240
     },
     {
       "month": "Nov",
-      "revenue": 11500,
-      "traffic": 12000,
-      "active_users": 1150
+      "revenue": 12600,
+      "traffic": 52400,
+      "active_users": 1260
     },
     {
       "month": "Dec",
-      "revenue": 12000,
-      "traffic": 12500,
-      "active_users": 1200
+      "revenue": 12500,
+      "traffic": 52400,
+      "active_users": 1250
     }
   ],
   "history": [
     {
-      "timestamp": "2026-02-07T16:49:50.718567",
-      "turn_index": 1,
+      "timestamp": "2026-02-07T21:41:52.951501",
+      "turn": 1,
       "phase": 1,
       "action_id": "guest_checkout",
       "metrics": {
@@ -122,11 +126,12 @@
       "traffic": 10000,
       "conversion_rate": 0.1102501075522267,
       "average_order_value": 50.0,
+      "message": null,
       "seed": 42
     },
     {
-      "timestamp": "2026-02-07T16:50:00.961685",
-      "turn_index": 2,
+      "timestamp": "2026-02-07T21:42:01.868465",
+      "turn": 2,
       "phase": 1,
       "action_id": "express_pay",
       "metrics": {
@@ -141,13 +146,51 @@
       "traffic": 10000,
       "conversion_rate": 0.1255694339892375,
       "average_order_value": 50.0,
+      "message": null,
+      "seed": 42
+    },
+    {
+      "timestamp": "2026-02-07T21:46:20.716745",
+      "turn": 2,
+      "phase": 1,
+      "action_id": "patch_memory",
+      "metrics": {},
+      "health": 0.0,
+      "morale": 0.0,
+      "trust": 0.0,
+      "revenue": 0.0,
+      "active_users": 0,
+      "traffic": 0,
+      "conversion_rate": 0.0,
+      "average_order_value": 0.0,
+      "message": "Risk Mitigated: memory_leak",
+      "seed": 42
+    },
+    {
+      "timestamp": "2026-02-07T22:18:16.046776",
+      "turn": 4,
+      "phase": 1,
+      "action_id": "fix_kyc",
+      "metrics": {
+        "health_delta": -0.1,
+        "revenue": 631847.1699461875
+      },
+      "health": 0.8,
+      "morale": 0.5862485340815441,
+      "trust": 0.5180286600771058,
+      "revenue": 631847.1699461875,
+      "active_users": 400,
+      "traffic": 100000,
+      "conversion_rate": 0.1255694339892375,
+      "average_order_value": 50.0,
+      "message": null,
       "seed": 42
     }
   ],
   "events": [
     {
       "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:49:50.718403",
+      "timestamp": "2026-02-07T21:41:52.951272",
       "properties": {
         "action_id": "guest_checkout",
         "turn_index": 1
@@ -155,17 +198,45 @@
     },
     {
       "event_name": "turn_start",
-      "timestamp": "2026-02-07T16:50:00.961605",
+      "timestamp": "2026-02-07T21:42:01.868384",
       "properties": {
         "action_id": "express_pay",
         "turn_index": 2
       }
+    },
+    {
+      "event_name": "intervention",
+      "timestamp": "2026-02-07T21:46:20.716844",
+      "properties": {
+        "action_id": "patch_memory",
+        "efficacy": 1.0,
+        "mitigated_risks": [
+          "memory_leak"
+        ]
+      }
+    },
+    {
+      "event_name": "intervention",
+      "timestamp": "2026-02-07T21:46:48.543079",
+      "properties": {
+        "action_id": "hiring_sprint",
+        "efficacy": 0.0,
+        "mitigated_risks": []
+      }
+    },
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-07T22:18:16.046680",
+      "properties": {
+        "action_id": "fix_kyc",
+        "turn_index": 4
+      }
     }
   ],
   "delivered_event_ids": [],
-  "active_risks": [
-    "memory_leak"
+  "active_risks": [],
+  "active_upgrades": [
+    "fix_kyc"
   ],
-  "active_upgrades": [],
   "seed": 42
 }

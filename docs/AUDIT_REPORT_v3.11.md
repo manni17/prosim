@@ -1,26 +1,35 @@
-# System Integrity Report (AUDIT-01)
-**Date:** Feb 06, 2026
-**Engine Version:** v3.11.1
-**Status:** PASS (GREEN)
+# System Integrity Report v3.11
 
-## 1. Physics Audit
-- **Iron Quadrant Clamping:** PASS. Verified `field_validator` in `engine/state.py` correctly clamps health, morale, and trust between 0.0 and 1.0.
-- **Revenue Model:** PASS. Updated hybrid model (Recurring + Transactional) is correctly implemented in `_recalculate_revenue`.
-- **Churn Physics (SYS-11):** PASS. `_calculate_churn` is successfully integrated into the turn lifecycle. Trust-based degradation is mathematically sound.
+## Executive Summary
+Full Game Engine Integrity Check (AUDIT-01) completed. The engine demonstrates robust physics, narrative pacing, and UI synchronization. All core systems are functioning as designed with minor considerations noted in Action Items.
 
-## 2. Narrative & Pacing Audit
-- **Trigger Processing (SYS-08):** PASS. `_process_triggers` correctly handles all conditions including `min_turn`, `max_health`, and `required_focus`.
-- **Level 2 Content:** PASS. `emails_lvl2.json` contains high-stakes retention scenarios (Outage, Support Crisis) triggered correctly at Turn 13+.
-- **Zombie Event Check:** No zombie events found. All triggers are reachable within the defined campaign length.
+## Physics Status: PASS
+The mathematical foundations of the game engine are sound:
+- ✅ Health values properly clamp between 0.0 and 1.0 using Pydantic validators and manual bounds checking
+- ✅ Trust values properly clamp between 0.0 and 1.0 using Pydantic validators and manual bounds checking  
+- ✅ Revenue calculation correctly incorporates active_users in the recurring revenue model (recurring_rev = active_users * subscription_fee)
+- ✅ Churn mechanics execute on every turn via _calculate_churn() call in execute_turn()
+- ✅ Churn rate properly degrades active_users based on Trust levels using the formula: base_churn + (1.0 - trust) * 0.15
 
-## 3. UI Dashboard Sync Audit
-- **Historical Anchor:** PASS. `MaxPanel.tsx` uses `gameState.historical_data` as the anchor for all charts, ensuring no regression on game start.
-- **Data Flow:** PASS. `api.ts` correctly passes session headers and prediction payloads.
-- **Interpolation:** PASS. `visualizedTurn` logic correctly handles turn-by-turn replay animations without data loss.
+## Narrative Status: PASS
+The story pacing and trigger systems are working correctly:
+- ✅ Triggers are correctly parsed using Pydantic EventTrigger models with proper schema validation
+- ✅ _process_triggers correctly filters events based on min_turn, max_turn, min_revenue, max_health, and strategy_archetype (quarterly_focus)
+- ✅ No "Zombie Events" detected - all triggers have achievable conditions that can be met during normal gameplay
+- ✅ Trigger logic accounts for previously acted-upon events to prevent duplicate delivery
 
-## 4. Findings & Action Items
-- **Code Rot:** Found redundant `type: "historical"` keys in early analytics files; standardized to `isHistory` boolean in frontend mapping.
-- **Bug:** Accidental schema truncation was fixed in previous turn; verified fix persists in current audit.
-- **Optimization:** Recommend moving `subscription_fee` to `defaults.json` instead of a hardcoded constant in `controller.py`.
+## UI Status: PASS
+Dashboard and frontend synchronization is accurate:
+- ✅ getAnalytics correctly fetches JSON based on strategy_archetype, falling back to default when specific strategy data is unavailable
+- ✅ visualizedTurn logic prevents chart regression using sessionStorage persistence and forward-only advancement
+- ✅ Data flows correctly from backend analytics to frontend visualization with proper interpolation between historical and live data
 
-**Final Verdict:** The engine is stable, the math is punishing but fair, and the visuals are perfectly synchronized with the backend state. Green for further feature development.
+## Action Items
+1. **Notification System Enhancement**: Toast notifications for state changes were not explicitly found in the reviewed components. Consider implementing a global notification system to provide user feedback on state transitions, game over conditions, and metric changes.
+
+2. **Documentation**: The trigger system is well-implemented but could benefit from inline documentation explaining the relationship between strategy_archetype and quarterly_focus for future maintainers.
+
+3. **Analytics Fallback Strategy**: The analytics loading mechanism gracefully falls back to default data, which is good for resilience, but consider logging when fallbacks occur for monitoring purposes.
+
+## Conclusion
+The game engine is green for further development. All core systems are functioning correctly with mathematically sound physics, properly paced narrative elements, and accurate UI synchronization. The codebase demonstrates good separation of concerns between backend logic and frontend presentation.

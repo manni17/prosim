@@ -1,0 +1,171 @@
+{
+  "health": 1.0,
+  "morale": 0.7362485340815441,
+  "trust": 0.4180286600771058,
+  "traffic": 10000,
+  "conversion_rate": 0.1255694339892375,
+  "average_order_value": 50.0,
+  "revenue": 82984.71699461875,
+  "active_users": 2020,
+  "churn_rate": 0.13729570098843413,
+  "cart_rate": 0.25,
+  "checkout_rate": 0.5512505377611334,
+  "payment_rate": 0.9111605369074411,
+  "phase": 1,
+  "current_level": 1,
+  "player_name": "Candidate",
+  "job_title": "Associate PM",
+  "tutorial_complete": false,
+  "quarterly_focus": null,
+  "physics_modifiers": {
+    "traffic": 1.0,
+    "cost": 1.0,
+    "aov": 1.0,
+    "conv": 1.0
+  },
+  "status": "ACTIVE",
+  "termination_details": {},
+  "strategy_archetype": "default",
+  "product_sense_score": 0.0,
+  "last_prediction_accuracy": 0.0,
+  "last_prediction_results": null,
+  "points": {},
+  "historical_data": [
+    {
+      "month": "Jan",
+      "revenue": 8500,
+      "traffic": 8000,
+      "active_users": 850
+    },
+    {
+      "month": "Feb",
+      "revenue": 8700,
+      "traffic": 8200,
+      "active_users": 870
+    },
+    {
+      "month": "Mar",
+      "revenue": 8200,
+      "traffic": 7500,
+      "active_users": 820
+    },
+    {
+      "month": "Apr",
+      "revenue": 9000,
+      "traffic": 9200,
+      "active_users": 900
+    },
+    {
+      "month": "May",
+      "revenue": 9500,
+      "traffic": 9800,
+      "active_users": 950
+    },
+    {
+      "month": "Jun",
+      "revenue": 10000,
+      "traffic": 10000,
+      "active_users": 1000
+    },
+    {
+      "month": "Jul",
+      "revenue": 10200,
+      "traffic": 10500,
+      "active_users": 1020
+    },
+    {
+      "month": "Aug",
+      "revenue": 9800,
+      "traffic": 10200,
+      "active_users": 980
+    },
+    {
+      "month": "Sep",
+      "revenue": 10500,
+      "traffic": 11000,
+      "active_users": 1050
+    },
+    {
+      "month": "Oct",
+      "revenue": 11000,
+      "traffic": 11500,
+      "active_users": 1100
+    },
+    {
+      "month": "Nov",
+      "revenue": 11500,
+      "traffic": 12000,
+      "active_users": 1150
+    },
+    {
+      "month": "Dec",
+      "revenue": 12000,
+      "traffic": 12500,
+      "active_users": 1200
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-02-07T17:15:10.638704",
+      "turn": 1,
+      "phase": 1,
+      "action_id": "guest_checkout",
+      "metrics": {
+        "health_delta": 0.0,
+        "revenue": 65755.05377611335
+      },
+      "health": 1.0,
+      "morale": 0.8,
+      "trust": 0.4180286600771058,
+      "revenue": 65755.05377611335,
+      "active_users": 1063,
+      "traffic": 10000,
+      "conversion_rate": 0.1102501075522267,
+      "average_order_value": 50.0,
+      "seed": 42
+    },
+    {
+      "timestamp": "2026-02-07T17:15:14.639045",
+      "turn": 2,
+      "phase": 1,
+      "action_id": "express_pay",
+      "metrics": {
+        "health_delta": 0.0,
+        "revenue": 82984.71699461875
+      },
+      "health": 1.0,
+      "morale": 0.7362485340815441,
+      "trust": 0.4180286600771058,
+      "revenue": 82984.71699461875,
+      "active_users": 2020,
+      "traffic": 10000,
+      "conversion_rate": 0.1255694339892375,
+      "average_order_value": 50.0,
+      "seed": 42
+    }
+  ],
+  "events": [
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-07T17:15:10.638483",
+      "properties": {
+        "action_id": "guest_checkout",
+        "turn_index": 1
+      }
+    },
+    {
+      "event_name": "turn_start",
+      "timestamp": "2026-02-07T17:15:14.638983",
+      "properties": {
+        "action_id": "express_pay",
+        "turn_index": 2
+      }
+    }
+  ],
+  "delivered_event_ids": [],
+  "active_risks": [
+    "memory_leak"
+  ],
+  "active_upgrades": [],
+  "seed": 42
+}

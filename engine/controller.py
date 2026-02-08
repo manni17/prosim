@@ -20,9 +20,8 @@ class SimulationController:
         self.all_chats = self.content_manager.get_chats()
         
         # Load Backstory for charts (Lead Debugger requirement)
-        if not self.state.historical_data:
-            analytics = self.content_manager.load_analytics(state.strategy_archetype)
-            self.state.historical_data = analytics.get("history", [])
+        analytics = self.content_manager.load_analytics(state.strategy_archetype)
+        self.state.historical_data = analytics.get("history", [])
         
         # Dynamic inbox/chats list
         self.inbox: List[NarrativeContent] = []
@@ -70,6 +69,13 @@ class SimulationController:
         elif focus_id == "monetize":
             mods["aov"] *= 1.2
             mods["conv"] *= 0.95
+
+        # Narrative Physics Overrides (SYS-12)
+        if focus_id == "blitzscale" or self.state.strategy_archetype == "floodgate":
+            self.state.physics_overrides["conversion_cap"] = 0.004
+        elif focus_id == "fortify" or self.state.strategy_archetype == "velvet":
+            self.state.physics_overrides["traffic_cap"] = 5000.0
+            self.state.physics_overrides["aov_floor"] = 150.0
 
         self.advance_level()
         print(f"Strategy {focus_id} committed. Level {self.state.current_level} active.")
@@ -123,9 +129,12 @@ class SimulationController:
                 self.state.strategy_archetype = action_id
             
             # --- Upgrade Capture (Architect Spec) ---
-            if action_id == "kyc_fix":
-                if "kyc_fix" not in self.state.active_upgrades:
-                    self.state.active_upgrades.append("kyc_fix")
+            if action_id == "fix_kyc":
+                if "fix_kyc" not in self.state.active_upgrades:
+                    self.state.active_upgrades.append("fix_kyc")
+                    # SYS-12: Remove math constraint
+                    if "conversion_cap" in self.state.physics_overrides:
+                        del self.state.physics_overrides["conversion_cap"]
             
             self.track("turn_start", {"action_id": action_id, "turn_index": len(self.state.history) + 1})
 
@@ -261,17 +270,16 @@ class SimulationController:
     def _recalculate_revenue(self) -> None:
         # --- Archetype Constraints (Lead Systems Architect Fix) ---
         if self.state.strategy_archetype == "floodgate":
-            # Force high traffic, but crush conversion unless KYC is fixed
-            self.state.traffic = max(self.state.traffic, 50000)
-            if "kyc_fix" not in self.state.active_upgrades:
-                # Force conversion to 0.4%
-                self.state.cart_rate = 0.05
-                self.state.checkout_rate = 0.10
-                self.state.payment_rate = 0.80
-        elif self.state.strategy_archetype == "velvet":
-            # Force low traffic, high AOV
-            self.state.traffic = min(self.state.traffic, 5000)
-            self.state.average_order_value = max(self.state.average_order_value, 150.0)
+            # Force high traffic
+            self.state.traffic = max(self.state.traffic, 52400)
+        
+        # --- SYS-12: Narrative Physics Overrides ---
+        overrides = self.state.physics_overrides
+        if "traffic_cap" in overrides:
+            self.state.traffic = int(min(self.state.traffic, overrides["traffic_cap"]))
+        
+        if "aov_floor" in overrides:
+            self.state.average_order_value = max(self.state.average_order_value, overrides["aov_floor"])
 
         visitors = self.state.traffic
         conv_mult = self.state.physics_modifiers["conv"]
@@ -280,7 +288,14 @@ class SimulationController:
         purchases = checkouts * self.state.payment_rate * conv_mult
         
         if visitors > 0:
-            self.state.conversion_rate = purchases / visitors
+            current_conv = purchases / visitors
+            # Apply Conversion Cap Override (SYS-12)
+            if "conversion_cap" in overrides:
+                current_conv = min(current_conv, overrides["conversion_cap"])
+                # Re-sync purchases to the capped rate
+                purchases = visitors * current_conv
+            
+            self.state.conversion_rate = current_conv
         else:
             self.state.conversion_rate = 0.0
             
@@ -362,9 +377,25 @@ class SimulationController:
         self.state.revenue = max(0.0, self.state.revenue - costs.get("revenue", 0.0))
 
         if max_efficacy > 0.5:
+            mitigated = [r for r in self.state.active_risks if intervention.efficacy.get(r, 0.0) > 0.5]
+            for risk in mitigated:
+                # Add to history as a narrative event (Architect Spec)
+                from engine.state import LogEntry
+                from datetime import datetime
+                log_entry = LogEntry(
+                    timestamp=datetime.now().isoformat(),
+                    turn=len(self.state.history),
+                    phase=self.state.phase,
+                    action_id=action_id,
+                    metrics={},
+                    message=f"Risk Mitigated: {risk}",
+                    seed=self.state.seed
+                )
+                self.state.history.append(log_entry)
+            
             self.state.active_risks = [r for r in self.state.active_risks if intervention.efficacy.get(r, 0.0) <= 0.5]
 
-        self.track("intervention", {"action_id": action_id, "efficacy": max_efficacy})
+        self.track("intervention", {"action_id": action_id, "efficacy": max_efficacy, "mitigated_risks": mitigated if max_efficacy > 0.5 else []})
         self.check_game_over()
         save_game(self.state)
         return {"label": intervention.label, "efficacy": max_efficacy, "effectiveness": "HIGH" if max_efficacy > 0.7 else "NONE"}

@@ -21,6 +21,13 @@ All notable changes to this project will be documented in this file.
 - **Content:** Added Level 2 narrative placeholder (`emails_lvl2.json`) and logic to load content by level.
 - **UI:** Updated `ReportCard.jsx` to show "Proceed to Next Level" upon victory, carrying forward the player's strategic archetype.
 
+## [3.12.0] - 2026-02-06 (Story Beats Math)
+### Added
+- **Engine:** Implemented the Narrative Physics Override system (SYS-12).
+- **Physics:** Added `physics_overrides` dictionary to `GameState` for dynamic math constraints.
+- **Logic:** Formalized the "Vanity Trap" for Floodgate players via a persistent conversion cap.
+- **Upgrades:** Integrated "Fix KYC" upgrade to dynamically remove conversion caps.
+
 ## [3.11.1] - 2026-02-06 (State & Dashboard Restoration)
 ### Fixed
 - **Backend:** Restored `GameState` schema after accidental field deletion; resolved Pydantic validator crash.

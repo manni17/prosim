@@ -12,7 +12,7 @@ class TelemetryLogger:
         """
         entry = LogEntry(
             timestamp=datetime.now().isoformat(),
-            turn_index=len(self.state.history) + 1,
+            turn=len(self.state.history) + 1,
             phase=self.state.phase,
             action_id=action_id,
             metrics=metrics,

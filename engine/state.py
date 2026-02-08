@@ -11,7 +11,7 @@ GameStatus = Literal['ACTIVE', 'WON', 'LOST_BURNOUT', 'LOST_FIRED', 'LOST_MUTINY
 
 class LogEntry(BaseModel):
     timestamp: str
-    turn_index: int
+    turn: int
     phase: int
     action_id: str
     metrics: Dict[str, float]
@@ -24,6 +24,7 @@ class LogEntry(BaseModel):
     traffic: int = 0
     conversion_rate: float = 0.0
     average_order_value: float = 0.0
+    message: Optional[str] = None
     seed: int
 
 class GameState(BaseModel):
@@ -48,6 +49,7 @@ class GameState(BaseModel):
     tutorial_complete: bool = Field(default=False, description="Whether onboarding is done")
     quarterly_focus: Optional[str] = Field(default=None, description="Current strategy focus")
     physics_modifiers: Dict[str, float] = Field(default_factory=lambda: {"traffic": 1.0, "cost": 1.0, "aov": 1.0, "conv": 1.0}, description="Physics multipliers")
+    physics_overrides: Dict[str, float] = Field(default_factory=dict, description="Narrative math constraints")
     status: GameStatus = Field(default='ACTIVE', description="Current game status")
     termination_details: Dict[str, str] = Field(default_factory=dict, description="Reason and notes for game over")
     strategy_archetype: str = Field(default="default", description="Active strategic path")

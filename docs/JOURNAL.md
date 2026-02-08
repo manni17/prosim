@@ -3,6 +3,19 @@
 
 ---
 
+## Entry 48: Story Beats Math
+**Date:** Feb 06, 2026
+**Phase:** Phase 8 (Level 2 Expansion) - **Physics**
+
+### 1. Formalizing the Constraint
+With `SYS-12`, we have evolved our "Archetype Logic" from hardcoded `if/else` blocks to a formal **Override Engine**.
+* **The Problem:** Previously, the "Vanity Trap" for Floodgate was buried deep in the revenue calculation. It was hard to track, hard to test, and invisible to the session state.
+* **The Solution:** We introduced `physics_overrides`. Choosing Floodgate now explicitly sets a `conversion_cap: 0.004` in the `GameState`.
+* **The State-Driven Physics:** The simulation math now "listens" to the narrative state. If a cap exists, the engine enforces it. This makes the "Vanity Trap" a first-class citizen of the data model.
+* **The Payoff:** Acquisition of the `fix_kyc` upgrade now has a visceral mathematical impact—removing the cap and allowing the massive Floodgate traffic to finally convert at standard rates. This creates a satisfying "Aha!" moment for the student.
+
+---
+
 ## Entry 47: Snapshot Integrity
 **Date:** Feb 06, 2026
 **Phase:** Phase 8 (Level 2 Expansion) - **Bugfix**

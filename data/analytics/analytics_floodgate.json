@@ -1,26 +1,19 @@
 {
-  "funnel": { "Visitors": 150000, "Sign Up": 45000, "Identity Check": 900, "Funded Account": 450 },
+  "funnel": { "Visitors": 52400, "Sign Up": 15720, "Identity Check": 62, "Funded Account": 209 },
   "sources": { "TikTok": 85, "Instagram": 10, "Direct": 5 },
   "retention": [[100, 5, 1], [100, 4, 0.5]],
   "history": [
-    { "month": "Jan", "revenue": 8000, "traffic": 10000, "active_users": 800 },
-    { "month": "Feb", "revenue": 8100, "traffic": 12000, "active_users": 810 },
-    { "month": "Mar", "revenue": 8200, "traffic": 15000, "active_users": 820 },
-    { "month": "Apr", "revenue": 8100, "traffic": 25000, "active_users": 810 },
-    { "month": "May", "revenue": 8300, "traffic": 45000, "active_users": 830 },
-    { "month": "Jun", "revenue": 8200, "traffic": 60000, "active_users": 820 },
-    { "month": "Jul", "revenue": 8400, "traffic": 85000, "active_users": 840 },
-    { "month": "Aug", "revenue": 8300, "traffic": 95000, "active_users": 830 },
-    { "month": "Sep", "revenue": 8500, "traffic": 110000, "active_users": 850 },
-    { "month": "Oct", "revenue": 8400, "traffic": 125000, "active_users": 840 },
-    { "month": "Nov", "revenue": 8600, "traffic": 140000, "active_users": 860 },
-    { "month": "Dec", "revenue": 8500, "traffic": 150000, "active_users": 850 }
-  ],
-  "flows": [
-    { "source": "TikTok", "target": "Landing Page", "value": 127500 },
-    { "source": "Landing Page", "target": "Sign Up", "value": 45000 },
-    { "source": "Sign Up", "target": "Identity Check", "value": 45000 },
-    { "source": "Identity Check", "target": "Error: ID_INVALID", "value": 44100 },
-    { "source": "Identity Check", "target": "Funded Account", "value": 900 }
+    { "month": "Jan", "revenue": 12000, "traffic": 10000, "active_users": 1200 },
+    { "month": "Feb", "revenue": 12100, "traffic": 12000, "active_users": 1210 },
+    { "month": "Mar", "revenue": 12200, "traffic": 15000, "active_users": 1220 },
+    { "month": "Apr", "revenue": 12100, "traffic": 25000, "active_users": 1210 },
+    { "month": "May", "revenue": 12300, "traffic": 35000, "active_users": 1230 },
+    { "month": "Jun", "revenue": 12200, "traffic": 45000, "active_users": 1220 },
+    { "month": "Jul", "revenue": 12400, "traffic": 50000, "active_users": 1240 },
+    { "month": "Aug", "revenue": 12300, "traffic": 52000, "active_users": 1230 },
+    { "month": "Sep", "revenue": 12500, "traffic": 52400, "active_users": 1250 },
+    { "month": "Oct", "revenue": 12400, "traffic": 52400, "active_users": 1240 },
+    { "month": "Nov", "revenue": 12600, "traffic": 52400, "active_users": 1260 },
+    { "month": "Dec", "revenue": 12500, "traffic": 52400, "active_users": 1250 }
   ]
 }

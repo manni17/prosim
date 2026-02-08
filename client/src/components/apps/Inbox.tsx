@@ -8,7 +8,7 @@ import { PredictionModal } from "../meta/PredictionModal";
 
 interface InboxProps {
   emails: InboxItem[];
-  onDecision: (actionId: string, prediction?: Record<string, string>) => Promise<void>;
+  onDecision: (actionId: string, prediction?: Record<string, any>) => Promise<void>;
 }
 
 const folders = [
@@ -41,7 +41,7 @@ export const Inbox = ({ emails, onDecision }: InboxProps) => {
 
   const selectedEmail = emails.find(e => e.id === selectedEmailId);
 
-  const handleAction = async (actionId: string, prediction?: Record<string, string>) => {
+  const handleAction = async (actionId: string, prediction?: Record<string, any>) => {
     if (isProcessing) return;
 
     // Check if this option requires a prediction (WEB-24)
@@ -52,7 +52,10 @@ export const Inbox = ({ emails, onDecision }: InboxProps) => {
       return;
     }
 
+    // Clear modal state immediately on confirm
     setShowPredictionModal(false);
+    setPendingAction(null);
+    
     setIsProcessing(true);
     toast.info("Transmitting Orders...", { duration: 1500 });
 

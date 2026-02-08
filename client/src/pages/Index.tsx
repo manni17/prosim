@@ -96,7 +96,7 @@ const Index = ({ gameStatus, setGameStatus, initialData }: IndexProps) => {
     );
   }
 
-  const handleDecision = async (actionId: string, prediction?: Record<string, string>) => {
+  const handleDecision = async (actionId: string, prediction?: Record<string, any>) => {
     if (!sessionId) return;
     try {
       const newState = await api.makeDecision(sessionId, actionId, prediction);
