@@ -1,9 +1,3 @@
-pydantic>=2.0
-rich
-click
-fastapi
-uvicorn
-requests
-httpx
-pytest
-pytest-cov
+pydantic>=2.0.0
+litellm
+python-dotenv
